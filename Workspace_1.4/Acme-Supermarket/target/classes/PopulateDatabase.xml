@@ -135,4 +135,13 @@
 		<property name="category" ref="category1"/>
 	</bean>
 	
+	<!-- Comment -->
+	
+	<!-- WareHouse -->
+	
+	<bean id="warehouse1" class="domain.WareHouse">
+		<property name="name" value="Almacén Cartuja"/>
+		<property name="address" value="Cartuja s/n"/>
+	</bean>
+	
 </beans>
