@@ -57,8 +57,56 @@
 		</property>
 	</bean>
 	
-	<!-- Other domain beans come here -->	
+	<!-- Other domain beans come here -->
 	
-
+	<!-- Administradores: -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Miguel"/>
+		<property name="surname" value="Rodriguez"/>
+		<property name="email" value="miguel@mail.com"/>
+		<property name="phone" value="666777888"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="folder">
+			<list>
+				<ref bean="folder1"/>
+				<ref bean="folder2"/>
+				<ref bean="folder3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Folders -->
+	
+	<bean id="folder1" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="administrator1"/>
+	</bean>
+	
+	<bean id="folder2" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="administrator1"/>
+	</bean>
+	
+	<bean id="folder3" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="administrator1"/>
+	</bean>
+	
+	<!-- Tasas: -->
+	
+	<bean id="tax1" class="domain.Tax">
+		<property name="name" value="tasa general" />
+		<property name="value" value="21" />
+	</bean>
+	
+	<bean id="tax2" class="domain.Tax">
+		<property name="name" value="tasa comida" />
+		<property name="value" value="4" />
+	</bean>
+	
 	
 </beans>
