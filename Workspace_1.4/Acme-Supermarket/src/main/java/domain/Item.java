@@ -129,7 +129,6 @@ public class Item extends DomainEntity{
 		this.comment = comment;
 	}
 	
-	@NotNull
 	@Valid
 	@OneToMany(mappedBy = "item")
 	public Collection<Storage> getStorage() {
