@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Order extends DomainEntity{
+public class Orderr extends DomainEntity{
 	private String ticker;
 	private Date placementMoment;
 	private String address;
