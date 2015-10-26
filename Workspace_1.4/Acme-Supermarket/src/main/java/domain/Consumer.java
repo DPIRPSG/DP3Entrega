@@ -14,7 +14,7 @@ import javax.validation.Valid;
 public class Consumer extends Actor {
 
 	private ShoppingCart shoppingCart;
-	private Collection<Order> order;
+	private Collection<Orderr> order;
 	
 	@Valid
 	@OneToOne(optional = true)
@@ -27,10 +27,10 @@ public class Consumer extends Actor {
 	
 	@Valid
 	@OneToMany(mappedBy = "consumer")
-	public Collection<Order> getOrder() {
+	public Collection<Orderr> getOrder() {
 		return order;
 	}
-	public void setOrder(Collection<Order> order) {
+	public void setOrder(Collection<Orderr> order) {
 		this.order = order;
 	}
 	

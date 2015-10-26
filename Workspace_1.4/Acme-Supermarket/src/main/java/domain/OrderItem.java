@@ -30,7 +30,7 @@ public class OrderItem extends DomainEntity{
 	private double tax;
 	private String nameCategory;
 	private int units;
-	private Order order;
+	private Orderr order;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -133,10 +133,10 @@ public class OrderItem extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Order getOrder() {
+	public Orderr getOrder() {
 		return order;
 	}
-	public void setOrder(Order order) {
+	public void setOrder(Orderr order) {
 		this.order = order;
 	}
 	

@@ -11,13 +11,13 @@ import javax.persistence.OneToMany;
 @Access(AccessType.PROPERTY)
 public class Clerk extends Actor {
 
-	private Collection<Order> order;
+	private Collection<Orderr> order;
 
 	@OneToMany(mappedBy = "clerk")
-	public Collection<Order> getOrder() {
+	public Collection<Orderr> getOrder() {
 		return order;
 	}
-	public void setOrder(Collection<Order> order) {
+	public void setOrder(Collection<Orderr> order) {
 		this.order = order;
 	}
 
