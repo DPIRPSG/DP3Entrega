@@ -14,12 +14,16 @@ import org.hibernate.validator.constraints.URL;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Category extends DomainEntity{
+	
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String description;
 	private String picture;
-	private Tax tax;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -28,6 +32,7 @@ public class Category extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getDescription() {
 		return description;
 	}
@@ -44,6 +49,9 @@ public class Category extends DomainEntity{
 		this.picture = picture;
 	}
 	
+	// Relationships ----------------------------------------------------------
+	private Tax tax;
+
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)

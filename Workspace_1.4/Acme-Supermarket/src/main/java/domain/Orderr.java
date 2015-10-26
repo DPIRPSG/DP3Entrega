@@ -9,29 +9,34 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Orderr extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String ticker;
 	private Date placementMoment;
 	private String address;
 	private Date deliveryMoment;
 	private Date cancelMoment;
 	private CreditCard creditCard;
-	private Clerk clerk;
-	private Collection<OrderItem> orderItem;
-	private Consumer consumer;
 	
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^\\d{6}\\-\\w{4}$")
 	@Valid
+	@NotNull
 	public String getTicker() {
 		return ticker;
 	}
@@ -40,6 +45,8 @@ public class Orderr extends DomainEntity{
 	}
 	
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getPlacementMoment() {
 		return placementMoment;
 	}
@@ -48,13 +55,16 @@ public class Orderr extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getDeliveryMoment() {
 		return deliveryMoment;
 	}
@@ -62,6 +72,8 @@ public class Orderr extends DomainEntity{
 		this.deliveryMoment = deliveryMoment;
 	}
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getCancelMoment() {
 		return cancelMoment;
 	}
@@ -76,6 +88,12 @@ public class Orderr extends DomainEntity{
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
+	
+	
+	// Relationships ----------------------------------------------------------
+	private Clerk clerk;
+	private Collection<OrderItem> orderItem;
+	private Consumer consumer;
 	
 	@ManyToOne(optional = true)
 	public Clerk getClerk() {

@@ -13,6 +13,11 @@ import javax.validation.Valid;
 @Access(AccessType.PROPERTY)
 public class Consumer extends Actor {
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
+	
+	// Relationships ----------------------------------------------------------
 	private ShoppingCart shoppingCart;
 	private Collection<Orderr> order;
 	

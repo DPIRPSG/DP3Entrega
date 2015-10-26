@@ -4,6 +4,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,6 +13,10 @@ import org.hibernate.validator.constraints.Range;
 @Embeddable
 @Access(AccessType.PROPERTY)
 public class CreditCard{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String holderName;
 	private String brandName;
 	private String number;
@@ -20,6 +25,7 @@ public class CreditCard{
 	private int cvvCode;
 	
 	@NotBlank
+	@NotNull
 	public String getHolderName() {
 		return holderName;
 	}
@@ -28,6 +34,7 @@ public class CreditCard{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getBrandName() {
 		return brandName;
 	}
@@ -37,6 +44,7 @@ public class CreditCard{
 	
 	@NotBlank
 	@CreditCardNumber
+	@NotNull
 	@Valid
 	public String getNumber() {
 		return number;
@@ -73,4 +81,6 @@ public class CreditCard{
 		this.cvvCode = cvvCode;
 	}
 	
+	// Relationships ----------------------------------------------------------
+
 }

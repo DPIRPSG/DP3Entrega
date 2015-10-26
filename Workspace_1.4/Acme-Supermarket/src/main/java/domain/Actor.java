@@ -24,16 +24,16 @@ import security.UserAccount;
 @Access(AccessType.PROPERTY)
 public abstract class Actor extends DomainEntity{
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String surname;
 	private String email;
 	private String phone;
-	private Collection<Folder> folder;
-	private Collection<Message> sent;
-	private Collection<Message> received;
-	private UserAccount userAccount;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -42,6 +42,7 @@ public abstract class Actor extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getSurname() {
 		return surname;
 	}
@@ -51,6 +52,7 @@ public abstract class Actor extends DomainEntity{
 	
 	@Email
 	@NotBlank
+	@NotNull
 	@Valid
 	public String getEmail() {
 		return email;
@@ -67,6 +69,12 @@ public abstract class Actor extends DomainEntity{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Collection<Folder> folder;
+	private Collection<Message> sent;
+	private Collection<Message> received;
+	private UserAccount userAccount;
 	
 	@NotNull
 	@OneToMany(mappedBy = "owner")

@@ -7,6 +7,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,11 +15,15 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class WareHouse extends DomainEntity{
 
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String address;
-	private Collection<Storage> storage;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -27,12 +32,16 @@ public class WareHouse extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Collection<Storage> storage;
 	
 	@Valid
 	@OneToMany(mappedBy = "wareHouse")
