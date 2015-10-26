@@ -36,6 +36,7 @@ public class Item extends DomainEntity{
 	@Column(unique = true)
 	@Pattern(regexp="^\\w{2}\\-\\w{4}$")
 	@Valid
+	@NotNull
 	public String getSku() {
 		return sku;
 	}
@@ -44,6 +45,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -52,6 +54,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getDescription() {
 		return description;
 	}

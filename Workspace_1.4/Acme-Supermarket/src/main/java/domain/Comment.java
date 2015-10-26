@@ -20,6 +20,7 @@ public class Comment extends DomainEntity{
 	private Item item;
 	
 	@NotBlank
+	@NotNull
 	public String getUserName() {
 		return userName;
 	}
@@ -28,6 +29,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getTitle() {
 		return title;
 	}
@@ -36,6 +38,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getText() {
 		return text;
 	}

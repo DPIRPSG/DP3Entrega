@@ -22,6 +22,7 @@ public class Folder extends DomainEntity{
 	private Collection<Message> message;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}

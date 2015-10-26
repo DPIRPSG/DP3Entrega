@@ -15,9 +15,10 @@ import org.hibernate.validator.constraints.NotBlank;
 public class ExchangeRate extends DomainEntity{
 	private String name;
 	private String currency;
-	private Double rate;
+	private double rate;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -28,6 +29,7 @@ public class ExchangeRate extends DomainEntity{
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}$")
 	@Valid
+	@NotNull
 	public String getCurrency() {
 		return currency;
 	}
@@ -35,13 +37,12 @@ public class ExchangeRate extends DomainEntity{
 		this.currency = currency;
 	}
 	
-	@NotNull
 	@Min(0)
 	@Valid
-	public Double getRate() {
+	public double getRate() {
 		return rate;
 	}
-	public void setRate(Double rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
 

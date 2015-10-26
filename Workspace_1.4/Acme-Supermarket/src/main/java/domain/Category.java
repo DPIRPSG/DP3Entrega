@@ -20,6 +20,7 @@ public class Category extends DomainEntity{
 	private Tax tax;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -28,6 +29,7 @@ public class Category extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getDescription() {
 		return description;
 	}
