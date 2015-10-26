@@ -13,13 +13,17 @@ import org.hibernate.validator.constraints.Range;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Comment extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String userName;
 	private String title;
 	private String text;
 	private int rating;
-	private Item item;
 	
 	@NotBlank
+	@NotNull
 	public String getUserName() {
 		return userName;
 	}
@@ -28,6 +32,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getTitle() {
 		return title;
 	}
@@ -36,6 +41,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getText() {
 		return text;
 	}
@@ -52,6 +58,9 @@ public class Comment extends DomainEntity{
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Item item;	
 	
 	@Valid
 	@NotNull

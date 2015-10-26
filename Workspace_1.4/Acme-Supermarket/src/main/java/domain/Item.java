@@ -21,6 +21,10 @@ import org.hibernate.validator.constraints.URL;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Item extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String sku;
 	private String name;
 	private String description;
@@ -28,14 +32,12 @@ public class Item extends DomainEntity{
 	private Collection<String> tags;
 	private String picture;
 	private boolean deleted;
-	private Category category;
-	private Collection<Comment> comment;
-	private Collection<Storage> storage;
 	
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp="^\\w{2}\\-\\w{4}$")
 	@Valid
+	@NotNull
 	public String getSku() {
 		return sku;
 	}
@@ -44,6 +46,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -52,6 +55,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@NotBlank
+	@NotNull
 	public String getDescription() {
 		return description;
 	}
@@ -100,6 +104,11 @@ public class Item extends DomainEntity{
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Category category;
+	private Collection<Comment> comment;
+	private Collection<Storage> storage;
 	
 	@Valid
 	@NotNull

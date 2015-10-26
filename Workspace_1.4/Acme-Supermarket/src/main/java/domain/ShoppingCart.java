@@ -14,9 +14,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Access(AccessType.PROPERTY)
 public class ShoppingCart extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private Collection<String> comment;
-	private Consumer consumer;
-	private Collection<Content> content;
 	
 	@ElementCollection
 	public Collection<String> getComment() {
@@ -32,6 +34,10 @@ public class ShoppingCart extends DomainEntity{
 		return comment.remove(o);
 	}
 	
+	// Relationships ----------------------------------------------------------
+	private Consumer consumer;
+	private Collection<Content> content;
+
 	@Valid
 	@NotNull
 	@OneToOne(optional = false)

@@ -11,9 +11,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Storage extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private int units;
-	private WareHouse wareHouse;
-	private Item item;
+
 	
 	//NotNull
 	@Min(1)
@@ -24,6 +27,10 @@ public class Storage extends DomainEntity{
 	public void setUnits(int units) {
 		this.units = units;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private WareHouse wareHouse;
+	private Item item;
 	
 	@Valid
 	@NotNull

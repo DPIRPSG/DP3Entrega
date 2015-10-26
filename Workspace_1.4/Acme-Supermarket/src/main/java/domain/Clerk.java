@@ -11,6 +11,11 @@ import javax.persistence.OneToMany;
 @Access(AccessType.PROPERTY)
 public class Clerk extends Actor {
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
 	private Collection<Orderr> order;
 
 	@OneToMany(mappedBy = "clerk")

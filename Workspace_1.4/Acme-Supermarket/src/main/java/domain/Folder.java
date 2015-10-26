@@ -16,12 +16,14 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class Folder extends DomainEntity{
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private boolean isSystem;
-	private Actor owner;
-	private Collection<Message> message;
 	
 	@NotBlank
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -36,6 +38,10 @@ public class Folder extends DomainEntity{
 	public void setIsSystem(boolean isSystem) {
 		this.isSystem = isSystem;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Actor owner;
+	private Collection<Message> message;
 	
 	@NotNull
 	@Valid
