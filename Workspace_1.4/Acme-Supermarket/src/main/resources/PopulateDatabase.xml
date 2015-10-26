@@ -78,6 +78,26 @@
 	
 	<!-- Consumidores -->
 	
+	<bean id="consumer1" class="domain.Consumer">
+		<property name="name" value="Manolo"/>
+		<property name="surname" value="Lopez"/>
+		<property name="email" value="manolo@mail.com"/>
+		<property name="phone" value="612345789"/>
+		<property name="userAccount" ref="userAccount2"/>
+		<property name="folder">
+			<list>
+				<ref bean="folder4"/>
+				<ref bean="folder5"/>
+				<ref bean="folder6"/>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Clerks -->
 	
 	<!-- Folders -->
@@ -100,9 +120,37 @@
 		<property name="owner" ref="administrator1"/>
 	</bean>
 	
+	<bean id="folder4" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="consumer1"/>
+	</bean>
+	
+	<bean id="folder5" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="consumer1"/>
+	</bean>
+	
+	<bean id="folder6" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="consumer1"/>
+	</bean>
+	
 	<!-- Mensajes -->
 	
-	
+	<bean id="message1" class="domain.Message">
+		<property name="subject" value="Bienvenido"/>
+		<property name="body" value="Registrado con exito, bienvenido a Acme-Supermarket"/>
+		<property name="moment" value="26/10/2015 19:30"/>
+		<property name="sender" ref="administrator1"/>
+		<property name="recipient">
+			<list>
+				<ref bean="consumer1"/>
+			</list>
+		</property>
+	</bean>
 	
 	<!-- Tasas: -->
 	
@@ -143,5 +191,15 @@
 		<property name="name" value="Almacén Cartuja"/>
 		<property name="address" value="Cartuja s/n"/>
 	</bean>
+	
+	<!-- Storage -->
+	
+	<!-- ShoppingCart -->
+	
+	<!-- Content -->
+	
+	<!-- Order -->
+	
+	<!-- OrderItem -->
 	
 </beans>
