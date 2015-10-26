@@ -74,6 +74,11 @@
 				<ref bean="folder3"/>
 			</list>
 		</property>
+		<property name="sent">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Consumidores -->
