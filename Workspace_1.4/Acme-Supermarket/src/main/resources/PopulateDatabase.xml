@@ -76,6 +76,10 @@
 		</property>
 	</bean>
 	
+	<!-- Consumidores -->
+	
+	<!-- Clerks -->
+	
 	<!-- Folders -->
 	
 	<bean id="folder1" class="domain.Folder">
@@ -96,6 +100,10 @@
 		<property name="owner" ref="administrator1"/>
 	</bean>
 	
+	<!-- Mensajes -->
+	
+	
+	
 	<!-- Tasas: -->
 	
 	<bean id="tax1" class="domain.Tax">
@@ -106,6 +114,14 @@
 	<bean id="tax2" class="domain.Tax">
 		<property name="name" value="tasa comida" />
 		<property name="value" value="4" />
+	</bean>
+	
+	<!-- Categoria -->
+	
+	<bean id="categoria1" class="domain.Category">
+		<property name="name" value="alimentos"/>
+		<property name="description" value="Productos alimenticios"/>
+		<property name="tax" ref="tax2"></property>
 	</bean>
 	
 	
