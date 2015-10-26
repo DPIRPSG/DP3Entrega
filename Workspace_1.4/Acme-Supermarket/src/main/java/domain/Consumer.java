@@ -21,7 +21,6 @@ public class Consumer extends Actor {
 	private ShoppingCart shoppingCart;
 	private Collection<Orderr> order;
 	
-	@Valid
 	@OneToOne(optional = true)
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;
