@@ -95,7 +95,6 @@ public abstract class Actor extends DomainEntity{
 		this.sent = sent;
 	}
 	
-	@Valid
 	@ManyToMany
 	public Collection<Message> getReceived() {
 		return received;
