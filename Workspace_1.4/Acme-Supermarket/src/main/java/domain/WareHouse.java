@@ -15,9 +15,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class WareHouse extends DomainEntity{
 
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String address;
-	private Collection<Storage> storage;
 	
 	@NotBlank
 	@NotNull
@@ -36,6 +39,9 @@ public class WareHouse extends DomainEntity{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Collection<Storage> storage;
 	
 	@Valid
 	@OneToMany(mappedBy = "wareHouse")

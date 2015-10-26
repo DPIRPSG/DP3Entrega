@@ -13,6 +13,10 @@ import org.hibernate.validator.constraints.Range;
 @Embeddable
 @Access(AccessType.PROPERTY)
 public class CreditCard{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String holderName;
 	private String brandName;
 	private String number;
@@ -77,4 +81,6 @@ public class CreditCard{
 		this.cvvCode = cvvCode;
 	}
 	
+	// Relationships ----------------------------------------------------------
+
 }

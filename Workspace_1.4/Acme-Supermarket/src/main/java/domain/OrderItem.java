@@ -20,6 +20,10 @@ import org.hibernate.validator.constraints.URL;
 @Entity
 @Access(AccessType.PROPERTY)
 public class OrderItem extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String sku;
 	private String name;
 	private String description;
@@ -30,7 +34,6 @@ public class OrderItem extends DomainEntity{
 	private double tax;
 	private String nameCategory;
 	private int units;
-	private Orderr order;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -133,6 +136,9 @@ public class OrderItem extends DomainEntity{
 	public void setUnits(int units) {
 		this.units = units;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Orderr order;
 	
 	@Valid
 	@NotNull

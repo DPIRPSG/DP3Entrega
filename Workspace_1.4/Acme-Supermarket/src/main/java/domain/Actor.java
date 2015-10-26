@@ -24,14 +24,13 @@ import security.UserAccount;
 @Access(AccessType.PROPERTY)
 public abstract class Actor extends DomainEntity{
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String surname;
 	private String email;
 	private String phone;
-	private Collection<Folder> folder;
-	private Collection<Message> sent;
-	private Collection<Message> received;
-	private UserAccount userAccount;
 	
 	@NotBlank
 	@NotNull
@@ -70,6 +69,12 @@ public abstract class Actor extends DomainEntity{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Collection<Folder> folder;
+	private Collection<Message> sent;
+	private Collection<Message> received;
+	private UserAccount userAccount;
 	
 	@NotNull
 	@OneToMany(mappedBy = "owner")

@@ -19,11 +19,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Message extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String subject;
 	private String body;
 	private Date moment;
-	private Actor sender;
-	private Collection<Actor> recipient;
 	
 	@NotBlank
 	@NotNull
@@ -53,6 +55,10 @@ public class Message extends DomainEntity{
 		this.moment = moment;
 	}
 	
+	// Relationships ----------------------------------------------------------	
+	private Actor sender;
+	private Collection<Actor> recipient;
+	
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
@@ -62,7 +68,7 @@ public class Message extends DomainEntity{
 	public void setSender(Actor sender) {
 		this.sender = sender;
 	}
-	
+
 	@Valid
 	@NotNull
 	@ManyToMany

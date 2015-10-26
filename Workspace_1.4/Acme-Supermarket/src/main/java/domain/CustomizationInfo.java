@@ -13,6 +13,9 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class CustomizationInfo extends DomainEntity{
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String description;
 	private String logo;
@@ -55,5 +58,6 @@ public class CustomizationInfo extends DomainEntity{
 	public void setWelcomeMessage(String welcomeMessage) {
 		this.welcomeMessage = welcomeMessage;
 	}	
-
+	
+	// Relationships ----------------------------------------------------------
 }

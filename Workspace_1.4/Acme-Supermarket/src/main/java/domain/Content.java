@@ -12,9 +12,11 @@ import javax.validation.constraints.NotNull;
 @Access(AccessType.PROPERTY)
 public class Content extends DomainEntity{
 
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private int units;
 	private Item item;
-	private ShoppingCart shoppingCart;
 	
 	//NotNull
 	@Min(1)
@@ -25,6 +27,9 @@ public class Content extends DomainEntity{
 	public void setUnits(int units) {
 		this.units = units;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private ShoppingCart shoppingCart;
 	
 	@Valid
 	@NotNull

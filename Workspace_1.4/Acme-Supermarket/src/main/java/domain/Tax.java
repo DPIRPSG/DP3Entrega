@@ -13,6 +13,10 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Tax extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private double value;
 	
@@ -36,4 +40,6 @@ public class Tax extends DomainEntity{
 		this.value = value;
 	}
 	
+	// Relationships ----------------------------------------------------------
+
 }

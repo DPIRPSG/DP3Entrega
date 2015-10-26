@@ -21,15 +21,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Orderr extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String ticker;
 	private Date placementMoment;
 	private String address;
 	private Date deliveryMoment;
 	private Date cancelMoment;
 	private CreditCard creditCard;
-	private Clerk clerk;
-	private Collection<OrderItem> orderItem;
-	private Consumer consumer;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -87,6 +88,12 @@ public class Orderr extends DomainEntity{
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
+	
+	
+	// Relationships ----------------------------------------------------------
+	private Clerk clerk;
+	private Collection<OrderItem> orderItem;
+	private Consumer consumer;
 	
 	@ManyToOne(optional = true)
 	public Clerk getClerk() {

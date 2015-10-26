@@ -21,6 +21,10 @@ import org.hibernate.validator.constraints.URL;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Item extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String sku;
 	private String name;
 	private String description;
@@ -28,9 +32,6 @@ public class Item extends DomainEntity{
 	private Collection<String> tags;
 	private String picture;
 	private boolean deleted;
-	private Category category;
-	private Collection<Comment> comment;
-	private Collection<Storage> storage;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -103,6 +104,11 @@ public class Item extends DomainEntity{
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+	
+	// Relationships ----------------------------------------------------------
+	private Category category;
+	private Collection<Comment> comment;
+	private Collection<Storage> storage;
 	
 	@Valid
 	@NotNull

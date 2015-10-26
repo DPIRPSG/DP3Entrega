@@ -13,6 +13,10 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Access(AccessType.PROPERTY)
 public class ExchangeRate extends DomainEntity{
+
+	// Constructors -----------------------------------------------------------
+
+	// Attributes -------------------------------------------------------------
 	private String name;
 	private String currency;
 	private double rate;
@@ -45,5 +49,7 @@ public class ExchangeRate extends DomainEntity{
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+	
+	// Relationships ----------------------------------------------------------
 
 }
