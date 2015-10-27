@@ -102,6 +102,7 @@
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
 		<!-- <property name="shoppingCart" ref="shoppingCart1"/>-->
+		<property name="order" ref="order1"/>
 		<property name="folder">
 			<list>
 				<ref bean="folder4"/>
@@ -134,6 +135,11 @@
 		<property name="received">
 			<list>
 				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="order">
+			<list>
+				<ref bean="order1"/>
 			</list>
 		</property>
 	</bean>
@@ -313,12 +319,67 @@
 	
 	<!-- CreditCard -->
 	
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Manolo"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4143672806408593"/>
+		<property name="expirationMonth" value="7"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="267"/>
+	</bean>
+	
 	<!-- CustomizationInfo -->
+	
+	<bean id="customizationInfo1" class="domain.CustomizationInfo">
+		<property name="name" value="name1"/>
+		<property name="description" value="description1"/>
+		<property name="logo" value="http://logo.com"/>
+		<property name="welcomeMessage" value="Hola, bienvenido"/>
+	</bean>
 	
 	<!-- ExchangeRate -->
 	
+	<bean id="exchangeRate1" class="domain.ExchangeRate">
+		<property name="name" value="pesetas"/>
+		<property name="currency" value="ESP"></property>
+		<property name="rate" value="166.386"/>
+	</bean>
+	
 	<!-- Order -->
 	
+	<bean id="order1" class="domain.Orderr">
+		<property name="ticker" value="123456-FH8J"/>
+		<property name="placementMoment" value="27/10/2015 17:55"/>
+		<property name="address" value="calle Zaragoza nº8"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="consumer" ref="consumer1"/>
+		<property name="clerk" ref="clerk1"/>
+		<property name="orderItem">
+			<list>
+				<ref bean="orderItem1"/>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- OrderItem -->
+	
+	<bean id="orderItem1" class="domain.OrderItem">
+		<property name="sku" value="AB-H6GH"/>
+		<property name="name" value="Turrón de chocolate"/>
+		<property name="description" value="se acerca la navidad, compra el mejor turron de chocolate"/>
+		<property name="price" value="1.99"/>
+		<property name="tags">
+			<list>
+				<value>Dulce</value>
+				<value>Turron</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
+		<property name="deleted" value="false"/>
+		<property name="tax" value="4"/>
+		<property name="nameCategory" value="tasa comida"/>
+		<property name="units" value="2"/>
+		<property name="order" ref="order1"></property>
+	</bean>
 	
 </beans>
