@@ -57,6 +57,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="clerk" />
+		<property name="password" value="91ec1f9324753048c9496d036a694f86" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CLERK" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->
 	
 	<!-- Administradores: -->
@@ -89,6 +101,7 @@
 		<property name="email" value="manolo@mail.com"/>
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
+		<!-- <property name="shoppingCart" ref="shoppingCart1"/>-->
 		<property name="folder">
 			<list>
 				<ref bean="folder4"/>
@@ -104,6 +117,26 @@
 	</bean>
 	
 	<!-- Clerks -->
+	
+	<bean id="clerk1" class="domain.Clerk">
+		<property name="name" value="Carlos"/>
+		<property name="surname" value="Mata"/>
+		<property name="email" value="carlos@mail.com"/>
+		<property name="phone" value="633449087"/>
+		<property name="userAccount" ref="userAccount4"/>
+		<property name="folder">
+			<list>
+				<ref bean="folder7"/>
+				<ref bean="folder8"/>
+				<ref bean="folder9"/>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
 	
 	<!-- Folders -->
 	
@@ -143,6 +176,24 @@
 		<property name="owner" ref="consumer1"/>
 	</bean>
 	
+	<bean id="folder7" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="clerk1"/>
+	</bean>
+	
+	<bean id="folder8" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="clerk1"/>
+	</bean>
+	
+	<bean id="folder9" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="owner" ref="clerk1"/>
+	</bean>
+	
 	<!-- Mensajes -->
 	
 	<bean id="message1" class="domain.Message">
@@ -153,6 +204,7 @@
 		<property name="recipient">
 			<list>
 				<ref bean="consumer1"/>
+				<ref bean="clerk1"/>
 			</list>
 		</property>
 	</bean>
@@ -184,24 +236,86 @@
 		<property name="name" value="Turrón de chocolate"/>
 		<property name="description" value="se acerca la navidad, compra el mejor turron de chocolate"/>
 		<property name="price" value="1.99"/>
+		<property name="tags">
+			<list>
+				<value>Dulce</value>
+				<value>Turron</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
 		<property name="deleted" value="false"/>
 		<property name="category" ref="category1"/>
+		<property name="storage">
+			<list>
+				<ref bean="storage1"/>
+			</list>
+		</property>
+		<property name="comment">
+			<list>
+				<ref bean="comment1"/>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Comment -->
+	
+	<bean id="comment1" class="domain.Comment">
+		<property name="userName" value="manolo_95"/>
+		<property name="title" value="Turron"/>
+		<property name="text" value="Es un gran producto, totalmente recomendado"/>
+		<property name="rating" value="5"/>
+		<property name="item" ref="item1"/>
+	</bean>
 	
 	<!-- WareHouse -->
 	
 	<bean id="warehouse1" class="domain.WareHouse">
 		<property name="name" value="Almacén Cartuja"/>
 		<property name="address" value="Cartuja s/n"/>
+		<property name="storage">
+			<list>
+				<ref bean="storage1"/>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Storage -->
 	
+	<bean id="storage1" class="domain.Storage">
+		<property name="units" value="10"/>
+		<property name="wareHouse" ref="warehouse1"/>
+		<property name="item" ref="item1"/>
+	</bean>
+	
 	<!-- ShoppingCart -->
 	
+	<bean id="shoppingCart1" class="domain.ShoppingCart">
+		<property name="comment">
+			<list>
+				<value>Muy buen carrito</value>
+			</list>
+		</property>
+		<property name="consumer" ref="consumer1"/>
+		<property name="content">
+			<list>
+				<ref bean="content1"/>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Content -->
+	
+	<bean id="content1" class="domain.Content">
+		<property name="units" value="2"/>
+		<property name="item" ref="item1"/>
+		<property name="shoppingCart" ref="shoppingCart1"/>
+	</bean>
+	
+	<!-- CreditCard -->
+	
+	<!-- CustomizationInfo -->
+	
+	<!-- ExchangeRate -->
 	
 	<!-- Order -->
 	

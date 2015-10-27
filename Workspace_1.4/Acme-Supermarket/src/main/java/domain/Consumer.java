@@ -21,7 +21,7 @@ public class Consumer extends Actor {
 	private ShoppingCart shoppingCart;
 	private Collection<Orderr> order;
 	
-	@OneToOne(optional = true)
+	@OneToOne(optional = true, mappedBy = "consumer")
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;
 	}
