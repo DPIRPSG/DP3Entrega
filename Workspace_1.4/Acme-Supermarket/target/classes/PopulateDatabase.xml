@@ -96,12 +96,12 @@
 	<!-- Consumidores -->
 	
 	<bean id="consumer1" class="domain.Consumer">
-		<property name="name" value="Manolo"/>
-		<property name="surname" value="Lopez"/>
-		<property name="email" value="manolo@mail.com"/>
+		<property name="name" value="Migue"/>
+		<property name="surname" value="Rodriguez"/>
+		<property name="email" value="migrodcab@mail.com"/>
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
-		<!-- <property name="shoppingCart" ref="shoppingCart1"/>-->
+		<property name="shoppingCart" ref="shoppingCart1"/>
 		<property name="order" ref="order1"/>
 		<property name="folder">
 			<list>
