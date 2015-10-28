@@ -40,7 +40,7 @@ public class ShoppingCart extends DomainEntity{
 
 	@Valid
 	@NotNull
-	@OneToOne(optional = false, mappedBy = "shoppingCart")
+	@OneToOne(optional = false)
 	public Consumer getConsumer() {
 		return consumer;
 	}
