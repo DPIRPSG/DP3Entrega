@@ -1,0 +1,87 @@
+DP3Entrega: JPQL
+
+README: EN LA BASE DE DATOS, ORDER ES PALABRA RESERVADA POR LO QUE SE LLAMARÁ “ORDERR”. AQUÍ SIN EMBARGO, NO 
+
+1)	Query C/1
+	12.7.1 Display a dashboard with the following information: The consumer/s who has/have placed more orders.
+	Query: select c from Consumer c where c.order.size = (select max(c.order.size) from Consumer c)
+	Descripción textual: Select the consumer whose Collection<Order> has a size equals to the consumer’s biggest Collection<Order>
+	Resultado: -
+
+2)	Query C/2
+	12.7.2 Display a dashboard with the following information: The consumer/s who has/have spent more money on their orders. 􏰀
+	Query: select c from Consumer c join c.order o join o.orderItem oi
+	Descripción textual: -
+	Resultado: -
+
+3)	Query C/3
+	12.7.3 Display a dashboard with the following information: The best-selling item/s in the inventory.
+	Query: select i from Item i join i.user u join u.order o where o.deliveryMoment is not null join o.orderItem oi 
+	Descripción textual: -
+	Resultado: -
+
+4)	Query C/4
+	12.7.4 Display a dashboard with the following information:􏰀 The worst-selling item/s in the inventory.
+	Query: select i from Item i join i.user u join u.order o where o.deliveryMoment is not null join o.orderItem oi
+	Descripción textual: Select an item from the DataBase after joining the Table Item with Table Consumer and Table Order. Then, we filter the order with no deliveryMoment. Finally we join with OrderItem and get the minimum number of unit of the order
+	Resultado: -
+
+5)	Query B/1
+	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
+	Query: select c from Clerk c join c.order o where o.deliveryMoment is not null and o.size = (select max(o.size) from Order o) 
+
+	Descripción textual: Select the clerk and join him/her with their orders. Filter the order by removing those which haven’t been delivered and taking the order whose size is the biggest one.
+	Resultado: -
+
+6)	Query B/2
+	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
+	Query: select c from Clerk c join c.order o where o.deliveryMoment is not null and o.size = (select min(o.size) from Order o)
+	Descripción textual: Select the clerk and join him/her with their orders. Filter the order by removing those which haven’t been delivered and taking the order whose size is the smallest one.
+	Resultado: -
+
+7)	Query B/3
+	17.6.3 Display a dashboard with the following information: The consumer/s who has/have cancelled more orders.
+	Query: select c from Consumer c join c.order o where o.cancellMoment is not null and o.size = (select max(o.size) from Order o where o.cancellMoment is not null)
+	Descripción textual: Select the consumer and join him/her with his/her Collecton<Order>. Then filter the orders that have not a cancellMoment and take the Collection<Order> whose size equals the Collection<Order> with most cancelled orders.
+	Resultado: -
+
+8)	Query B/4
+	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
+	Query: select c from Consumer c join c.order o where o.cancellMoment is not null and o.size = (select min(o.size) from Order o where o.cancellMoment is not null)
+	Descripción textual: Select the consumer and join him/her with his/her Collecton<Order>. Then filter the orders that have not a cancellMoment and take the Collection<Order> whose size equals the Collection<Order> with less cancelled orders.
+	Resultado: -
+
+9)	Query B/5
+	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
+	Query: select avg(o) where o.cancellMoment between CURRENT_DATE and (YEAR(CURRENT_DATE) and MONTH(CURRENT_DATE)-1)
+	Descripción textual: Select the average of orders that have been cancelled and their cancellMoment is between the current date of the system and the current year and a month back.
+	Resultado: -
+
+10)	Query A/1
+	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
+	Query: select i from Item i where i.comment.size = (select max(i.comment.size) from Item i)
+	Descripción textual: Select an item whose Collection<Comment> has a size equals to the biggest size of a Collection<Comment> of an Item
+	Resultado: -
+
+Dudas (Las dudas resueltas no las borréis sin un previo consenso del grupo… vamos, que no borréis a lo loco.):
+
+1)	Sin dudas aparentes. Sólo falta confirmar que está bien para establecer una base en las queries.
+	En el caso que sean muchos, ¿hay que poner group by?
+2)	POR TERMINAR
+	¿Hace falta un group by en alguna parte de la query? Quizás para ir agrupando por Order pero no sé.
+	Recordar que hay que tener en cuenta el precio y las unidades pedidas.
+	¿La suma de oi.price*oi.units a qué se iguala, o dónde se va guardando?
+	Hay que crear variables derivadas. Quizás un price en Order o un spentMoney en Consumer
+3)	POR TERMINAR
+	Al igual que en 2), ¿los oi.units a qué se igualan?
+4)	POR TERMINAR
+	Análogo a 3), cuando sepamos hacerlo se resolverán juntos.
+
+5)	Mismo caso que 1).
+6)	Mismo caso que 1).
+7)	Mismo caso que 1).
+8)	Mismo caso que 1).
+9)	Preguntar si las fechas se hacen así.
+
+10)	Mismo caso que 1).
+
