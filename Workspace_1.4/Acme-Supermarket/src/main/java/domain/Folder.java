@@ -55,6 +55,7 @@ public class Folder extends DomainEntity{
 	
 	@Valid
 	@ManyToMany
+	@NotNull
 	public Collection<Message> getMessage() {
 		return message;
 	}
