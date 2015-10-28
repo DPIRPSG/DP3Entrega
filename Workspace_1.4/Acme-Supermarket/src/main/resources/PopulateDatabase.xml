@@ -139,6 +139,10 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
+		<property name="received">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Consumidores -->
@@ -156,6 +160,10 @@
 				<ref bean="folder4"/>
 				<ref bean="folder5"/>
 				<ref bean="folder6"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
 			</list>
 		</property>
 		<property name="received">
@@ -222,6 +230,11 @@
 				<ref bean="folder7"/>
 				<ref bean="folder8"/>
 				<ref bean="folder9"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+				<ref bean="message1"/>
 			</list>
 		</property>
 		<property name="received">
@@ -292,54 +305,90 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder2" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder3" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder4" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder5" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder6" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder7" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder8" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder9" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
+		<property name="message">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="folder10" class="domain.Folder">
@@ -427,6 +476,13 @@
 				<ref bean="consumer2"/>
 				<ref bean="consumer3"/>
 				<ref bean="clerk1"/>
+			</list>
+		</property>
+		<property name="folder">
+			<list>
+				<ref bean="folder2"/>
+				<ref bean="folder4"/>
+				<ref bean="folder7"/>
 			</list>
 		</property>
 	</bean>

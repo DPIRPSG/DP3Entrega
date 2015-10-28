@@ -120,8 +120,8 @@ public class Item extends DomainEntity{
 		this.category = category;
 	}
 	
-	@Valid
 	@OneToMany(mappedBy = "item")
+	@NotNull
 	public Collection<Comment> getComment() {
 		return comment;
 	}
@@ -129,8 +129,8 @@ public class Item extends DomainEntity{
 		this.comment = comment;
 	}
 	
-	@Valid
 	@OneToMany(mappedBy = "item")
+	@NotNull
 	public Collection<Storage> getStorage() {
 		return storage;
 	}

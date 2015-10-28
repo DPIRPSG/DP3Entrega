@@ -6,7 +6,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -43,8 +42,8 @@ public class WareHouse extends DomainEntity{
 	// Relationships ----------------------------------------------------------
 	private Collection<Storage> storage;
 	
-	@Valid
 	@OneToMany(mappedBy = "wareHouse")
+	@NotNull
 	public Collection<Storage> getStorage() {
 		return storage;
 	}
