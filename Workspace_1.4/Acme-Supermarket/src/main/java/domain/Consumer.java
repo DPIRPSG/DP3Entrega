@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -31,6 +32,7 @@ public class Consumer extends Actor {
 		this.shoppingCart = shoppingCart;
 	}
 	
+	@NotNull
 	@OneToMany(mappedBy = "consumer")
 	public Collection<Order> getOrder() {
 		return order;

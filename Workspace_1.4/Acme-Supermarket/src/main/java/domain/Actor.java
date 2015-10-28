@@ -87,6 +87,7 @@ public abstract class Actor extends DomainEntity{
 	}
 	
 	@OneToMany(mappedBy = "sender")
+	@NotNull
 	public Collection<Message> getSent() {
 		return sent;
 	}
@@ -94,6 +95,7 @@ public abstract class Actor extends DomainEntity{
 		this.sent = sent;
 	}
 	
+	@NotNull
 	@ManyToMany(mappedBy = "recipient")
 	public Collection<Message> getReceived() {
 		return received;

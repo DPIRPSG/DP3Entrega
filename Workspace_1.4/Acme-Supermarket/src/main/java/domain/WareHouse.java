@@ -43,6 +43,7 @@ public class WareHouse extends DomainEntity{
 	private Collection<Storage> storage;
 	
 	@OneToMany(mappedBy = "wareHouse")
+	@NotNull
 	public Collection<Storage> getStorage() {
 		return storage;
 	}

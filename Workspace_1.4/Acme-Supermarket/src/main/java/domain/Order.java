@@ -99,6 +99,7 @@ public class Order extends DomainEntity{
 	private Consumer consumer;
 	
 	@Valid
+	@NotNull
 	@ManyToOne(optional = true)
 	public Clerk getClerk() {
 		return clerk;

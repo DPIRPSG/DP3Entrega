@@ -49,6 +49,7 @@ public class ShoppingCart extends DomainEntity{
 	}
 	
 	@OneToMany(mappedBy = "shoppingCart")
+	@NotNull
 	public Collection<Content> getContent() {
 		return content;
 	}

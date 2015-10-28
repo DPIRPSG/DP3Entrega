@@ -121,6 +121,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@OneToMany(mappedBy = "item")
+	@NotNull
 	public Collection<Comment> getComment() {
 		return comment;
 	}
@@ -129,6 +130,7 @@ public class Item extends DomainEntity{
 	}
 	
 	@OneToMany(mappedBy = "item")
+	@NotNull
 	public Collection<Storage> getStorage() {
 		return storage;
 	}
