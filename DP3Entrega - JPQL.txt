@@ -4,8 +4,8 @@ README: EN LA BASE DE DATOS, ORDER ES PALABRA RESERVADA POR LO QUE SE LLAMARÁ �
 
 1)	Query C/1
 	12.7.1 Display a dashboard with the following information: The consumer/s who has/have placed more orders.
-	Query: select c from Consumer c where c.order.size = (select max(c.order.size) from Consumer c)
-	Descripción textual: Select the consumer whose Collection<Order> has a size equals to the consumer’s biggest Collection<Order>
+	Query: select c from Consumer c join c.order o where o.size = (select max(c.order.size) from Consumer c join c.order o where o.cancelMoment is null) and o.cancelMoment is null
+	Descripción textual: Select the consumer whose Collection<Order> has a size equals to the consumer’s biggest Collection<Order>. We have to be careful with <Order>.cancelMoment; if an order has been cancelled, it doesn’t count.
 	Resultado: -
 
 2)	Query C/2
