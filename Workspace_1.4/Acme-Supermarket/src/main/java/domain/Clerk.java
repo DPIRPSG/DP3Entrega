@@ -16,13 +16,13 @@ public class Clerk extends Actor {
 	// Attributes -------------------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Orderr> order;
+	private Collection<Order> order;
 
 	@OneToMany(mappedBy = "clerk")
-	public Collection<Orderr> getOrder() {
+	public Collection<Order> getOrder() {
 		return order;
 	}
-	public void setOrder(Collection<Orderr> order) {
+	public void setOrder(Collection<Order> order) {
 		this.order = order;
 	}
 
