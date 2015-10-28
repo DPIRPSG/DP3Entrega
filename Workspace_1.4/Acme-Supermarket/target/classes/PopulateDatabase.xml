@@ -347,7 +347,7 @@
 	
 	<!-- Order -->
 	
-	<bean id="order1" class="domain.Orderr">
+	<bean id="order1" class="domain.Order">
 		<property name="ticker" value="123456-FH8J"/>
 		<property name="placementMoment" value="27/10/2015 17:55"/>
 		<property name="address" value="calle Zaragoza nº8"/>
