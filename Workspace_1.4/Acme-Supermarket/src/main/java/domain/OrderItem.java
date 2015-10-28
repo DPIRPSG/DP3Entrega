@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -36,7 +35,6 @@ public class OrderItem extends DomainEntity{
 	private int units;
 	
 	@NotBlank
-	@Column(unique = true)
 	@Pattern(regexp="^\\w{2}\\-\\w{4}$")
 	@Valid
 	@NotNull
