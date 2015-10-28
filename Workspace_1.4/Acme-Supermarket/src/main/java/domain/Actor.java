@@ -78,7 +78,6 @@ public abstract class Actor extends DomainEntity{
 	
 	@NotNull
 	@OneToMany(mappedBy = "owner")
-	@Valid
 	@Size(min = 3)
 	public Collection<Folder> getFolder() {
 		return folder;

@@ -31,7 +31,6 @@ public class Consumer extends Actor {
 		this.shoppingCart = shoppingCart;
 	}
 	
-	@Valid
 	@OneToMany(mappedBy = "consumer")
 	public Collection<Order> getOrder() {
 		return order;

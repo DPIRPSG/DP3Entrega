@@ -98,6 +98,7 @@ public class Order extends DomainEntity{
 	private Collection<OrderItem> orderItem;
 	private Consumer consumer;
 	
+	@Valid
 	@ManyToOne(optional = true)
 	public Clerk getClerk() {
 		return clerk;
@@ -106,7 +107,6 @@ public class Order extends DomainEntity{
 		this.clerk = clerk;
 	}
 	
-	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "order")
 	@Size(min = 1)

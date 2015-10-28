@@ -48,7 +48,6 @@ public class ShoppingCart extends DomainEntity{
 		this.consumer = consumer;
 	}
 	
-	@Valid
 	@OneToMany(mappedBy = "shoppingCart")
 	public Collection<Content> getContent() {
 		return content;
