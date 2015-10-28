@@ -20,7 +20,7 @@ public class Consumer extends Actor {
 	
 	// Relationships ----------------------------------------------------------
 	private ShoppingCart shoppingCart;
-	private Collection<Orderr> order;
+	private Collection<Order> order;
 	
 	@Valid
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
@@ -33,10 +33,10 @@ public class Consumer extends Actor {
 	
 	@Valid
 	@OneToMany(mappedBy = "consumer")
-	public Collection<Orderr> getOrder() {
+	public Collection<Order> getOrder() {
 		return order;
 	}
-	public void setOrder(Collection<Orderr> order) {
+	public void setOrder(Collection<Order> order) {
 		this.order = order;
 	}
 	

@@ -138,15 +138,15 @@ public class OrderItem extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Orderr order;
+	private Order order;
 	
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Orderr getOrder() {
+	public Order getOrder() {
 		return order;
 	}
-	public void setOrder(Orderr order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 	
