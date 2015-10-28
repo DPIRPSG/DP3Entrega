@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -59,6 +60,7 @@ public class Message extends DomainEntity{
 	// Relationships ----------------------------------------------------------	
 	private Actor sender;
 	private Collection<Actor> recipient;
+	private Collection<Folder> folder;
 	
 	@NotNull
 	@Valid
@@ -73,12 +75,23 @@ public class Message extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToMany
-	@Size(min = 1)
+	@NotEmpty
 	public Collection<Actor> getRecipient() {
 		return recipient;
 	}
 	public void setRecipient(Collection<Actor> recipient) {
 		this.recipient = recipient;
+	}
+	
+	@Valid
+	@NotNull
+	@Size(min = 2)
+	@ManyToMany(mappedBy = "message")
+	public Collection<Folder> getFolder() {
+		return folder;
+	}
+	public void setFolder(Collection<Folder> folder) {
+		this.folder = folder;
 	}
 	
 }
