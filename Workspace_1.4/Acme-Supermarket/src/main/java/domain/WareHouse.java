@@ -40,15 +40,15 @@ public class WareHouse extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Collection<Storage> storage;
+	private Collection<Storage> storages;
 	
 	@OneToMany(mappedBy = "wareHouse")
 	@NotNull
-	public Collection<Storage> getStorage() {
-		return storage;
+	public Collection<Storage> getStorages() {
+		return storages;
 	}
-	public void setStorage(Collection<Storage> storage) {
-		this.storage = storage;
+	public void setStorages(Collection<Storage> storages) {
+		this.storages = storages;
 	}
 	
 

@@ -127,7 +127,7 @@
 		<property name="email" value="miguel@mail.com"/>
 		<property name="phone" value="666777888"/>
 		<property name="userAccount" ref="userAccount1"/>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder1"/>
 				<ref bean="folder2"/>
@@ -154,12 +154,12 @@
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="shoppingCart" ref="shoppingCart1"/>
-		<property name="order">
+		<property name="orders">
 		<list>
 			<ref bean="order1"/>
 		</list>
 		</property>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder4"/>
 				<ref bean="folder5"/>
@@ -184,14 +184,14 @@
 		<property name="phone" value="612342289"/>
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="shoppingCart" ref="shoppingCart2"/>
-		<property name="order">
+		<property name="orders">
 			<list>
 				<ref bean="order2"/>
 				<ref bean="order4"/>
 				<ref bean="order7"/>
 			</list>
 		</property> 
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder10"/>
 				<ref bean="folder11"/>
@@ -216,14 +216,14 @@
 		<property name="phone" value="633422897"/>
 		<property name="userAccount" ref="userAccount6"/>
 		<property name="shoppingCart" ref="shoppingCart3"/>
-		<property name="order">
+		<property name="orders">
 		<list>
 			<ref bean="order3"/>
 			<ref bean="order5"/>
 			<ref bean="order6"/>
 		</list>
 		</property>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder13"/>
 				<ref bean="folder14"/>
@@ -249,7 +249,7 @@
 		<property name="email" value="carlos@mail.com"/>
 		<property name="phone" value="633449087"/>
 		<property name="userAccount" ref="userAccount4"/>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder7"/>
 				<ref bean="folder8"/>
@@ -265,7 +265,7 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
-		<property name="order">
+		<property name="orders">
 			<list>
 				<ref bean="order1"/>
 				<ref bean="order5"/>
@@ -280,7 +280,7 @@
 		<property name="email" value="ana@mail.com"/>
 		<property name="phone" value="633946087"/>
 		<property name="userAccount" ref="userAccount7"/>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder16"/>
 				<ref bean="folder17"/>
@@ -296,7 +296,7 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
-		<property name="order">
+		<property name="orders">
 			<list>
 				<ref bean="order2"/>
 				<ref bean="order4"/>
@@ -310,7 +310,7 @@
 		<property name="email" value="alberto@mail.com"/>
 		<property name="phone" value="633940257"/>
 		<property name="userAccount" ref="userAccount8"/>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder19"/>
 				<ref bean="folder20"/>
@@ -326,7 +326,7 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
-		<property name="order">
+		<property name="orders">
 			<list>
 				<ref bean="order3"/>
 				<ref bean="order7"/>
@@ -341,7 +341,7 @@
 		<property name="body" value="Registrado con exito, bienvenido a Acme-Supermarket"/>
 		<property name="moment" value="26/10/2015 19:30"/>
 		<property name="sender" ref="administrator1"/>
-		<property name="recipient">
+		<property name="recipients">
 			<list>
 				<ref bean="consumer1"/>
 				<ref bean="consumer2"/>
@@ -351,7 +351,7 @@
 				<ref bean="clerk3"/>
 			</list>
 		</property>
-		<property name="folder">
+		<property name="folders">
 			<list>
 				<ref bean="folder2"/>
 				<ref bean="folder4"/>
@@ -370,7 +370,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -380,7 +380,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -391,7 +391,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="administrator1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -401,7 +401,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -412,7 +412,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -422,7 +422,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -432,7 +432,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -443,7 +443,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -453,7 +453,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk1"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -463,7 +463,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -474,7 +474,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -484,7 +484,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -494,7 +494,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -505,7 +505,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -515,7 +515,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="consumer3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -525,7 +525,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -536,7 +536,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -546,7 +546,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk2"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -556,7 +556,7 @@
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 				<ref bean="message1"/>
 			</list>
@@ -567,7 +567,7 @@
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -577,7 +577,7 @@
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
 		<property name="owner" ref="clerk3"/>
-		<property name="message">
+		<property name="messages">
 			<list>
 			</list>
 		</property>
@@ -631,12 +631,12 @@
 		</property>
 		<property name="deleted" value="false"/>
 		<property name="category" ref="category1"/>
-		<property name="storage">
+		<property name="storages">
 			<list>
 				<ref bean="storage1"/>
 			</list>
 		</property>
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<ref bean="comment1"/>
 			</list>
@@ -657,12 +657,12 @@
 		</property>
 		<property name="deleted" value="false"/>
 		<property name="category" ref="category2"/>
-		<property name="storage">
+		<property name="storages">
 			<list>
 				<ref bean="storage2"/>
 			</list>
 		</property>
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<ref bean="comment2"/>
 			</list>
@@ -681,12 +681,12 @@
 		</property>
 		<property name="deleted" value="false"/>
 		<property name="category" ref="category3"/>
-		<property name="storage">
+		<property name="storages">
 			<list>
 				<ref bean="storage3"/>
 			</list>
 		</property>
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<ref bean="comment3"/>
 				<ref bean="comment4"/>
@@ -708,12 +708,12 @@
 		</property>
 		<property name="deleted" value="false"/>
 		<property name="category" ref="category1"/>
-		<property name="storage">
+		<property name="storages">
 			<list>
 				<ref bean="storage4"/>
 			</list>
 		</property>
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<ref bean="comment5"/>
 				<ref bean="comment6"/>
@@ -776,7 +776,7 @@
 	<bean id="warehouse1" class="domain.WareHouse">
 		<property name="name" value="Almacén Cartuja"/>
 		<property name="address" value="Cartuja s/n"/>
-		<property name="storage">
+		<property name="storages">
 			<list>
 				<ref bean="storage1"/>
 				<ref bean="storage2"/>
@@ -815,13 +815,13 @@
 	<!-- ShoppingCart -->
 	
 	<bean id="shoppingCart1" class="domain.ShoppingCart">
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<value>Muy buen carrito</value>
 			</list>
 		</property>
 		<property name="consumer" ref="consumer1"/>
-		<property name="content">
+		<property name="contents">
 			<list>
 				<ref bean="content1"/>
 				<ref bean="content4"/>
@@ -830,13 +830,13 @@
 	</bean>
 	
 	<bean id="shoppingCart2" class="domain.ShoppingCart">
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<value>Me gusta</value>
 			</list>
 		</property>
 		<property name="consumer" ref="consumer2"/>
-		<property name="content">
+		<property name="contents">
 			<list>
 				<ref bean="content2"/>
 			</list>
@@ -844,13 +844,13 @@
 	</bean>
 	
 	<bean id="shoppingCart3" class="domain.ShoppingCart">
-		<property name="comment">
+		<property name="comments">
 			<list>
 				<value>Muy bueno</value>
 			</list>
 		</property>
 		<property name="consumer" ref="consumer3"/>
-		<property name="content">
+		<property name="contents">
 			<list>
 				<ref bean="content3"/>
 			</list>
@@ -933,13 +933,13 @@
 	
 	<bean id="order1" class="domain.Order">
 		<property name="ticker" value="123456-FH8J"/>
-		<property name="placementMoment" value="27/9/2015 17:55"/>
+		<property name="placementMoment" value="27/09/2015 17:55"/>
 		<property name="address" value="calle Zaragoza nº8"/>
 		<property name="cancelMoment" value="02/10/2015 10:15"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="consumer" ref="consumer1"/>
 		<property name="clerk" ref="clerk1"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem1"/>
 			</list>
@@ -954,7 +954,7 @@
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem2"/>
 			</list>
@@ -963,13 +963,13 @@
 	
 	<bean id="order3" class="domain.Order">
 		<property name="ticker" value="654721-FPKJ"/>
-		<property name="placementMoment" value="24/9/2015 17:55"/>
+		<property name="placementMoment" value="24/09/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
 		<property name="cancelMoment" value="06/10/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk3"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem3"/>
 			</list>
@@ -984,7 +984,7 @@
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem4"/>
 			</list>
@@ -993,13 +993,13 @@
 	
 	<bean id="order5" class="domain.Order">
 		<property name="ticker" value="694721-ABCD"/>
-		<property name="placementMoment" value="24/5/2015 17:55"/>
+		<property name="placementMoment" value="24/05/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="29/5/2015 19:45"/>
+		<property name="cancelMoment" value="29/05/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk1"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem5"/>
 			</list>
@@ -1008,13 +1008,13 @@
 	
 	<bean id="order6" class="domain.Order">
 		<property name="ticker" value="694721-AHCD"/>
-		<property name="placementMoment" value="20/5/2015 17:55"/>
+		<property name="placementMoment" value="20/05/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="deliveryMoment" value="25/5/2015 19:45"/>
+		<property name="deliveryMoment" value="25/05/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk2"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem6"/>
 			</list>
@@ -1029,7 +1029,7 @@
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk3"/>
-		<property name="orderItem">
+		<property name="orderItems">
 			<list>
 				<ref bean="orderItem7"/>
 			</list>
