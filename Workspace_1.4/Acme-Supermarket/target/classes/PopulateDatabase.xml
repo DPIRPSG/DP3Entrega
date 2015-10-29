@@ -933,7 +933,7 @@
 	
 	<bean id="order1" class="domain.Order">
 		<property name="ticker" value="123456-FH8J"/>
-		<property name="placementMoment" value="27/9/2015 17:55"/>
+		<property name="placementMoment" value="27/09/2015 17:55"/>
 		<property name="address" value="calle Zaragoza nº8"/>
 		<property name="cancelMoment" value="02/10/2015 10:15"/>
 		<property name="creditCard" ref="creditCard1"/>
@@ -963,7 +963,7 @@
 	
 	<bean id="order3" class="domain.Order">
 		<property name="ticker" value="654721-FPKJ"/>
-		<property name="placementMoment" value="24/9/2015 17:55"/>
+		<property name="placementMoment" value="24/09/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
 		<property name="cancelMoment" value="06/10/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
@@ -993,9 +993,9 @@
 	
 	<bean id="order5" class="domain.Order">
 		<property name="ticker" value="694721-ABCD"/>
-		<property name="placementMoment" value="24/5/2015 17:55"/>
+		<property name="placementMoment" value="24/05/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="29/5/2015 19:45"/>
+		<property name="cancelMoment" value="29/05/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk1"/>
@@ -1008,9 +1008,9 @@
 	
 	<bean id="order6" class="domain.Order">
 		<property name="ticker" value="694721-AHCD"/>
-		<property name="placementMoment" value="20/5/2015 17:55"/>
+		<property name="placementMoment" value="20/05/2015 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="deliveryMoment" value="25/5/2015 19:45"/>
+		<property name="deliveryMoment" value="25/05/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk2"/>
