@@ -188,6 +188,7 @@
 			<list>
 				<ref bean="order2"/>
 				<ref bean="order4"/>
+				<ref bean="order7"/>
 			</list>
 		</property> 
 		<property name="folder">
@@ -219,6 +220,7 @@
 		<list>
 			<ref bean="order3"/>
 			<ref bean="order5"/>
+			<ref bean="order6"/>
 		</list>
 		</property>
 		<property name="folder">
@@ -266,6 +268,8 @@
 		<property name="order">
 			<list>
 				<ref bean="order1"/>
+				<ref bean="order5"/>
+				<ref bean="order6"/>
 			</list>
 		</property>
 	</bean>
@@ -325,6 +329,7 @@
 		<property name="order">
 			<list>
 				<ref bean="order3"/>
+				<ref bean="order7"/>
 			</list>
 		</property>
 	</bean>
@@ -945,6 +950,7 @@
 		<property name="ticker" value="654321-FH8J"/>
 		<property name="placementMoment" value="28/10/2015 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
+		<property name="deliveryMoment" value="29/10/2015 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
@@ -992,9 +998,40 @@
 		<property name="cancelMoment" value="29/5/2015 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
+		<property name="clerk" ref="clerk1"/>
 		<property name="orderItem">
 			<list>
 				<ref bean="orderItem5"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="order6" class="domain.Order">
+		<property name="ticker" value="694721-AHCD"/>
+		<property name="placementMoment" value="20/5/2015 17:55"/>
+		<property name="address" value="calle Cádiz nº8"/>
+		<property name="deliveryMoment" value="25/5/2015 19:45"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="consumer" ref="consumer3"/>
+		<property name="clerk" ref="clerk2"/>
+		<property name="orderItem">
+			<list>
+				<ref bean="orderItem6"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="order7" class="domain.Order">
+		<property name="ticker" value="654321-018J"/>
+		<property name="placementMoment" value="26/09/2015 17:55"/>
+		<property name="address" value="calle Sevilla nº8"/>
+		<property name="deliveryMoment" value="29/09/2015 10:00"/>
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="consumer" ref="consumer2"/>
+		<property name="clerk" ref="clerk3"/>
+		<property name="orderItem">
+			<list>
+				<ref bean="orderItem7"/>
 			</list>
 		</property>
 	</bean>
@@ -1092,6 +1129,42 @@
 		<property name="nameCategory" value="electronica"/>
 		<property name="units" value="1"/>
 		<property name="order" ref="order5"></property>
+	</bean>
+	
+	<bean id="orderItem6" class="domain.OrderItem">
+		<property name="sku" value="AB-H6GH"/>
+		<property name="name" value="Turrón de chocolate"/>
+		<property name="description" value="se acerca la navidad, compra el mejor turron de chocolate"/>
+		<property name="price" value="1.99"/>
+		<property name="tags">
+			<list>
+				<value>Dulce</value>
+				<value>Turron</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
+		<property name="deleted" value="false"/>
+		<property name="tax" value="4"/>
+		<property name="nameCategory" value="alimentos"/>
+		<property name="units" value="5"/>
+		<property name="order" ref="order6"></property>
+	</bean>
+	
+	<bean id="orderItem7" class="domain.OrderItem">
+		<property name="sku" value="9G-H58D"/>
+		<property name="name" value="Colonia"/>
+		<property name="description" value="Colonia de mujer"/>
+		<property name="price" value="10.90"/>
+		<property name="tags">
+			<list>
+				<value>Colonia</value>
+			</list>
+		</property>
+		<property name="deleted" value="false"/>
+		<property name="tax" value="21"/>
+		<property name="nameCategory" value="cosmética"/>
+		<property name="units" value="2"/>
+		<property name="order" ref="order7"></property>
 	</bean>
 	
 </beans>
