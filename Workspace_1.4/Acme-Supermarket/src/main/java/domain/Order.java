@@ -107,6 +107,7 @@ public class Order extends DomainEntity{
 		this.clerk = clerk;
 	}
 	
+	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "order")
 	@NotEmpty
