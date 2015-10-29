@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -84,7 +85,7 @@ public class Message extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	@NotEmpty
+	@Size(min = 2)
 	@ManyToMany(mappedBy = "message")
 	public Collection<Folder> getFolder() {
 		return folder;
