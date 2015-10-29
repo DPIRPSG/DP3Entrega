@@ -156,7 +156,7 @@
 		<property name="shoppingCart" ref="shoppingCart1"/>
 		<property name="orders">
 		<list>
-			<!--<ref bean="order1"/>-->
+			<ref bean="order1"/>
 		</list>
 		</property>
 		<property name="folders">
@@ -186,9 +186,9 @@
 		<property name="shoppingCart" ref="shoppingCart2"/>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order2"/>
+				<ref bean="order2"/>
 				<ref bean="order4"/>
-				<ref bean="order7"/>-->
+				<ref bean="order7"/>
 			</list>
 		</property> 
 		<property name="folders">
@@ -218,9 +218,9 @@
 		<property name="shoppingCart" ref="shoppingCart3"/>
 		<property name="orders">
 		<list>
-			<!--<ref bean="order3"/>
+			<ref bean="order3"/>
 			<ref bean="order5"/>
-			<ref bean="order6"/>-->
+			<ref bean="order6"/>
 		</list>
 		</property>
 		<property name="folders">
@@ -267,9 +267,9 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order1"/>
+				<ref bean="order1"/>
 				<ref bean="order5"/>
-				<ref bean="order6"/>-->
+				<ref bean="order6"/>
 			</list>
 		</property>
 	</bean>
@@ -298,8 +298,8 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order2"/>
-				<ref bean="order4"/>-->
+				<ref bean="order2"/>
+				<ref bean="order4"/>
 			</list>
 		</property>
 	</bean>
@@ -328,8 +328,8 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order3"/>
-				<ref bean="order7"/>-->
+				<ref bean="order3"/>
+				<ref bean="order7"/>
 			</list>
 		</property>
 	</bean>
