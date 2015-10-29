@@ -33,6 +33,7 @@ public class Consumer extends Actor {
 	}
 	
 	@NotNull
+	@Valid
 	@OneToMany(mappedBy = "consumer")
 	public Collection<Order> getOrders() {
 		return orders;

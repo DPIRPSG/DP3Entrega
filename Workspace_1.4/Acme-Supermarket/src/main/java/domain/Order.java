@@ -49,7 +49,7 @@ public class Order extends DomainEntity{
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getPlacementMoment() {
 		return placementMoment;
 	}
@@ -67,7 +67,7 @@ public class Order extends DomainEntity{
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getDeliveryMoment() {
 		return deliveryMoment;
 	}
@@ -76,7 +76,7 @@ public class Order extends DomainEntity{
 	}
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getCancelMoment() {
 		return cancelMoment;
 	}
@@ -107,6 +107,7 @@ public class Order extends DomainEntity{
 		this.clerk = clerk;
 	}
 	
+	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "order")
 	@NotEmpty

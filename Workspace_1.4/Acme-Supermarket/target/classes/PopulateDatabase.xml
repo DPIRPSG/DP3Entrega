@@ -156,7 +156,7 @@
 		<property name="shoppingCart" ref="shoppingCart1"/>
 		<property name="orders">
 		<list>
-			<!--<ref bean="order1"/>-->
+			<ref bean="order1"/>
 		</list>
 		</property>
 		<property name="folders">
@@ -186,9 +186,9 @@
 		<property name="shoppingCart" ref="shoppingCart2"/>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order2"/>
+				<ref bean="order2"/>
 				<ref bean="order4"/>
-				<ref bean="order7"/>-->
+				<ref bean="order7"/>
 			</list>
 		</property> 
 		<property name="folders">
@@ -218,9 +218,9 @@
 		<property name="shoppingCart" ref="shoppingCart3"/>
 		<property name="orders">
 		<list>
-			<!--<ref bean="order3"/>
+			<ref bean="order3"/>
 			<ref bean="order5"/>
-			<ref bean="order6"/>-->
+			<ref bean="order6"/>
 		</list>
 		</property>
 		<property name="folders">
@@ -267,9 +267,9 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order1"/>
+				<ref bean="order1"/>
 				<ref bean="order5"/>
-				<ref bean="order6"/>-->
+				<ref bean="order6"/>
 			</list>
 		</property>
 	</bean>
@@ -298,8 +298,8 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order2"/>
-				<ref bean="order4"/>-->
+				<ref bean="order2"/>
+				<ref bean="order4"/>
 			</list>
 		</property>
 	</bean>
@@ -328,8 +328,8 @@
 		</property>
 		<property name="orders">
 			<list>
-				<!--<ref bean="order3"/>
-				<ref bean="order7"/>-->
+				<ref bean="order3"/>
+				<ref bean="order7"/>
 			</list>
 		</property>
 	</bean>
@@ -339,7 +339,7 @@
 	<bean id="message1" class="domain.Message">
 		<property name="subject" value="Bienvenido"/>
 		<property name="body" value="Registrado con exito, bienvenido a Acme-Supermarket"/>
-		<property name="moment" value="26/10/2015 19:30"/>
+		<property name="moment" value="2015/10/13 22:15"/>
 		<property name="sender" ref="administrator1"/>
 		<property name="recipients">
 			<list>
@@ -369,7 +369,7 @@
 	<bean id="folder1" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -379,7 +379,7 @@
 	<bean id="folder2" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -390,7 +390,7 @@
 	<bean id="folder3" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -400,7 +400,7 @@
 	<bean id="folder4" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -411,7 +411,7 @@
 	<bean id="folder5" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -421,7 +421,7 @@
 	<bean id="folder6" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -431,7 +431,7 @@
 	<bean id="folder7" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -442,7 +442,7 @@
 	<bean id="folder8" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -452,7 +452,7 @@
 	<bean id="folder9" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -462,7 +462,7 @@
 	<bean id="folder10" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -473,7 +473,7 @@
 	<bean id="folder11" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -483,7 +483,7 @@
 	<bean id="folder12" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -493,7 +493,7 @@
 	<bean id="folder13" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -504,7 +504,7 @@
 	<bean id="folder14" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -514,7 +514,7 @@
 	<bean id="folder15" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -524,7 +524,7 @@
 	<bean id="folder16" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -535,7 +535,7 @@
 	<bean id="folder17" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -545,7 +545,7 @@
 	<bean id="folder18" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -555,7 +555,7 @@
 	<bean id="folder19" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -566,7 +566,7 @@
 	<bean id="folder20" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -576,7 +576,7 @@
 	<bean id="folder21" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -933,9 +933,9 @@
 	
 	<bean id="order1" class="domain.Order">
 		<property name="ticker" value="123456-FH8J"/>
-		<property name="placementMoment" value="27/9/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/27 17:55"/>
 		<property name="address" value="calle Zaragoza nº8"/>
-		<property name="cancelMoment" value="02/10/2015 10:15"/>
+		<property name="cancelMoment" value="2015/10/02 10:15"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="consumer" ref="consumer1"/>
 		<property name="clerk" ref="clerk1"/>
@@ -948,9 +948,9 @@
 	
 	<bean id="order2" class="domain.Order">
 		<property name="ticker" value="654321-FH8J"/>
-		<property name="placementMoment" value="28/10/2015 17:55"/>
+		<property name="placementMoment" value="2015/10/28 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="deliveryMoment" value="29/10/2015 10:00"/>
+		<property name="deliveryMoment" value="2015/10/29 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
@@ -963,9 +963,9 @@
 	
 	<bean id="order3" class="domain.Order">
 		<property name="ticker" value="654721-FPKJ"/>
-		<property name="placementMoment" value="24/9/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/24 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="06/10/2015 19:45"/>
+		<property name="cancelMoment" value="2015/10/06 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk3"/>
@@ -978,9 +978,9 @@
 	
 	<bean id="order4" class="domain.Order">
 		<property name="ticker" value="854911-LH8J"/>
-		<property name="placementMoment" value="27/10/2015 17:55"/>
+		<property name="placementMoment" value="2015/10/27 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="cancelMoment" value="28/10/2015 19:45"/>
+		<property name="cancelMoment" value="2015/10/28 19:45"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
@@ -993,9 +993,9 @@
 	
 	<bean id="order5" class="domain.Order">
 		<property name="ticker" value="694721-ABCD"/>
-		<property name="placementMoment" value="24/5/2015 17:55"/>
+		<property name="placementMoment" value="2015/05/24 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="29/5/2015 19:45"/>
+		<property name="cancelMoment" value="2015/05/29 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk1"/>
@@ -1008,9 +1008,9 @@
 	
 	<bean id="order6" class="domain.Order">
 		<property name="ticker" value="694721-AHCD"/>
-		<property name="placementMoment" value="20/5/2015 17:55"/>
+		<property name="placementMoment" value="2015/05/20 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="deliveryMoment" value="25/5/2015 19:45"/>
+		<property name="deliveryMoment" value="2015/05/25 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk2"/>
@@ -1023,9 +1023,9 @@
 	
 	<bean id="order7" class="domain.Order">
 		<property name="ticker" value="654321-018J"/>
-		<property name="placementMoment" value="26/09/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/26 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="deliveryMoment" value="29/09/2015 10:00"/>
+		<property name="deliveryMoment" value="2015/09/29 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk3"/>
