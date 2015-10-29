@@ -107,8 +107,8 @@ public class Item extends DomainEntity{
 	
 	// Relationships ----------------------------------------------------------
 	private Category category;
-	private Collection<Comment> comment;
-	private Collection<Storage> storage;
+	private Collection<Comment> comments;
+	private Collection<Storage> storages;
 	
 	@Valid
 	@NotNull
@@ -122,20 +122,20 @@ public class Item extends DomainEntity{
 	
 	@OneToMany(mappedBy = "item")
 	@NotNull
-	public Collection<Comment> getComment() {
-		return comment;
+	public Collection<Comment> getComments() {
+		return comments;
 	}
-	public void setComment(Collection<Comment> comment) {
-		this.comment = comment;
+	public void setComments(Collection<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	@OneToMany(mappedBy = "item")
 	@NotNull
-	public Collection<Storage> getStorage() {
-		return storage;
+	public Collection<Storage> getStorages() {
+		return storages;
 	}
-	public void setStorage(Collection<Storage> storage) {
-		this.storage = storage;
+	public void setStorages(Collection<Storage> storages) {
+		this.storages = storages;
 	}
 	
 	

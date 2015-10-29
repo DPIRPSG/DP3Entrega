@@ -36,7 +36,7 @@ public class ShoppingCart extends DomainEntity{
 	
 	// Relationships ----------------------------------------------------------
 	private Consumer consumer;
-	private Collection<Content> content;
+	private Collection<Content> contents;
 
 	@Valid
 	@NotNull
@@ -50,11 +50,11 @@ public class ShoppingCart extends DomainEntity{
 	
 	@OneToMany(mappedBy = "shoppingCart")
 	@NotNull
-	public Collection<Content> getContent() {
-		return content;
+	public Collection<Content> getContents() {
+		return contents;
 	}
-	public void setContent(Collection<Content> content) {
-		this.content = content;
+	public void setContents(Collection<Content> contents) {
+		this.contents = contents;
 	}
 	
 	
