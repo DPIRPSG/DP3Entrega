@@ -12,7 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -49,7 +48,7 @@ public class Message extends DomainEntity{
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getMoment() {
 		return moment;
 	}
@@ -85,7 +84,6 @@ public class Message extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	@Size(min = 2)
 	@ManyToMany(mappedBy = "messages")
 	public Collection<Folder> getFolders() {
 		return folders;

@@ -117,6 +117,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="consumer4" />
+		<property name="password" value="91ec0f932475304h6r496d036a694f86" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CONSUMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->
 	
 	<!-- Administradores: -->
@@ -241,6 +253,37 @@
 		</property>
 	</bean>
 	
+	<bean id="consumer4" class="domain.Consumer">
+		<property name="name" value="Mónica"/>
+		<property name="surname" value="Ordóñez"/>
+		<property name="email" value="monica@mail.com"/>
+		<property name="phone" value="626667791"/>
+		<property name="userAccount" ref="userAccount9"/>
+		<property name="shoppingCart" ref="shoppingCart4"/>
+		<property name="orders">
+		<list>
+			<ref bean="order8"/>
+			<ref bean="order9"/>
+		</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder22"/>
+				<ref bean="folder23"/>
+				<ref bean="folder24"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Clerks -->
 	
 	<bean id="clerk1" class="domain.Clerk">
@@ -270,6 +313,7 @@
 				<ref bean="order1"/>
 				<ref bean="order5"/>
 				<ref bean="order6"/>
+				<ref bean="order8"/>
 			</list>
 		</property>
 	</bean>
@@ -300,6 +344,7 @@
 			<list>
 				<ref bean="order2"/>
 				<ref bean="order4"/>
+				<ref bean="order9"/>
 			</list>
 		</property>
 	</bean>
@@ -339,13 +384,14 @@
 	<bean id="message1" class="domain.Message">
 		<property name="subject" value="Bienvenido"/>
 		<property name="body" value="Registrado con exito, bienvenido a Acme-Supermarket"/>
-		<property name="moment" value="26/10/2015 19:30"/>
+		<property name="moment" value="2015/10/13 22:15"/>
 		<property name="sender" ref="administrator1"/>
 		<property name="recipients">
 			<list>
 				<ref bean="consumer1"/>
 				<ref bean="consumer2"/>
 				<ref bean="consumer3"/>
+				<ref bean="consumer4"/>
 				<ref bean="clerk1"/>
 				<ref bean="clerk2"/>
 				<ref bean="clerk3"/>
@@ -360,6 +406,7 @@
 				<ref bean="folder13"/>
 				<ref bean="folder16"/>
 				<ref bean="folder19"/>
+				<ref bean="folder22"/>
 			</list>
 		</property>
 	</bean>
@@ -369,7 +416,7 @@
 	<bean id="folder1" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -379,7 +426,7 @@
 	<bean id="folder2" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -390,7 +437,7 @@
 	<bean id="folder3" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="administrator1"/>
+		<property name="actor" ref="administrator1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -400,7 +447,7 @@
 	<bean id="folder4" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -411,7 +458,7 @@
 	<bean id="folder5" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -421,7 +468,7 @@
 	<bean id="folder6" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer1"/>
+		<property name="actor" ref="consumer1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -431,7 +478,7 @@
 	<bean id="folder7" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -442,7 +489,7 @@
 	<bean id="folder8" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -452,7 +499,7 @@
 	<bean id="folder9" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk1"/>
+		<property name="actor" ref="clerk1"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -462,7 +509,7 @@
 	<bean id="folder10" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -473,7 +520,7 @@
 	<bean id="folder11" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -483,7 +530,7 @@
 	<bean id="folder12" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer2"/>
+		<property name="actor" ref="consumer2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -493,7 +540,7 @@
 	<bean id="folder13" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -504,7 +551,7 @@
 	<bean id="folder14" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -514,7 +561,7 @@
 	<bean id="folder15" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="consumer3"/>
+		<property name="actor" ref="consumer3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -524,7 +571,7 @@
 	<bean id="folder16" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -535,7 +582,7 @@
 	<bean id="folder17" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -545,7 +592,7 @@
 	<bean id="folder18" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk2"/>
+		<property name="actor" ref="clerk2"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -555,7 +602,7 @@
 	<bean id="folder19" class="domain.Folder">
 		<property name="name" value="InBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
 		<property name="messages">
 			<list>
 				<ref bean="message1"/>
@@ -566,7 +613,7 @@
 	<bean id="folder20" class="domain.Folder">
 		<property name="name" value="OutBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -576,7 +623,38 @@
 	<bean id="folder21" class="domain.Folder">
 		<property name="name" value="TrashBox"/>
 		<property name="isSystem" value="true"/>
-		<property name="owner" ref="clerk3"/>
+		<property name="actor" ref="clerk3"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder22" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="consumer4"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder23" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="consumer4"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder24" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="consumer4"/>
 		<property name="messages">
 			<list>
 			</list>
@@ -721,6 +799,32 @@
 		</property>
 	</bean>
 	
+	<bean id="item5" class="domain.Item">
+		<property name="sku" value="01-MN7Y"/>
+		<property name="name" value="Patatas fritas"/>
+		<property name="description" value="Las mejores patatas"/>
+		<property name="price" value="0.99"/>
+		<property name="tags">
+			<list>
+				<value>Patatas</value>
+				<value>Fritas</value>
+			</list>
+		</property>
+		<property name="deleted" value="true"/>
+		<property name="category" ref="category1"/>
+		<property name="storages">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment7"/>
+				<ref bean="comment8"/>
+				<ref bean="comment9"/>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Comment -->
 	
 	<bean id="comment1" class="domain.Comment">
@@ -769,6 +873,30 @@
 		<property name="text" value="riquísimos"/>
 		<property name="rating" value="5"/>
 		<property name="item" ref="item4"/>
+	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+		<property name="userName" value="guille_95"/>
+		<property name="title" value="Patatas"/>
+		<property name="text" value="muy buenas"/>
+		<property name="rating" value="4"/>
+		<property name="item" ref="item5"/>
+	</bean>
+	
+	<bean id="comment8" class="domain.Comment">
+		<property name="userName" value="manolo_95"/>
+		<property name="title" value="Patatas fritas"/>
+		<property name="text" value="buena relación calidad-precio"/>
+		<property name="rating" value="5"/>
+		<property name="item" ref="item5"/>
+	</bean>
+	
+	<bean id="comment9" class="domain.Comment">
+		<property name="userName" value="ruben_95"/>
+		<property name="title" value="Patatas fritas de acme"/>
+		<property name="text" value="muy ricas"/>
+		<property name="rating" value="4"/>
+		<property name="item" ref="item5"/>
 	</bean>
 	
 	<!-- WareHouse -->
@@ -857,6 +985,19 @@
 		</property>
 	</bean>
 	
+	<bean id="shoppingCart4" class="domain.ShoppingCart">
+		<property name="comments">
+			<list>
+				<value>Gran carrito</value>
+			</list>
+		</property>
+		<property name="consumer" ref="consumer4"/>
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Content -->
 	
 	<bean id="content1" class="domain.Content">
@@ -912,6 +1053,15 @@
 		<property name="cvvCode" value="143"/>
 	</bean>
 	
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="Monica"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4794199409160431"/>
+		<property name="expirationMonth" value="9"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="683"/>
+	</bean>
+	
 	<!-- CustomizationInfo -->
 	
 	<bean id="customizationInfo1" class="domain.CustomizationInfo">
@@ -933,9 +1083,9 @@
 	
 	<bean id="order1" class="domain.Order">
 		<property name="ticker" value="123456-FH8J"/>
-		<property name="placementMoment" value="27/09/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/27 17:55"/>
 		<property name="address" value="calle Zaragoza nº8"/>
-		<property name="cancelMoment" value="02/10/2015 10:15"/>
+		<property name="cancelMoment" value="2015/10/02 10:15"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="consumer" ref="consumer1"/>
 		<property name="clerk" ref="clerk1"/>
@@ -948,9 +1098,9 @@
 	
 	<bean id="order2" class="domain.Order">
 		<property name="ticker" value="654321-FH8J"/>
-		<property name="placementMoment" value="28/10/2015 17:55"/>
+		<property name="placementMoment" value="2015/10/28 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="deliveryMoment" value="29/10/2015 10:00"/>
+		<property name="deliveryMoment" value="2015/10/29 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
@@ -963,9 +1113,9 @@
 	
 	<bean id="order3" class="domain.Order">
 		<property name="ticker" value="654721-FPKJ"/>
-		<property name="placementMoment" value="24/09/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/24 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="06/10/2015 19:45"/>
+		<property name="cancelMoment" value="2015/10/06 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk3"/>
@@ -978,9 +1128,9 @@
 	
 	<bean id="order4" class="domain.Order">
 		<property name="ticker" value="854911-LH8J"/>
-		<property name="placementMoment" value="27/10/2015 17:55"/>
+		<property name="placementMoment" value="2015/10/27 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="cancelMoment" value="28/10/2015 19:45"/>
+		<property name="cancelMoment" value="2015/10/28 19:45"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
@@ -993,9 +1143,9 @@
 	
 	<bean id="order5" class="domain.Order">
 		<property name="ticker" value="694721-ABCD"/>
-		<property name="placementMoment" value="24/05/2015 17:55"/>
+		<property name="placementMoment" value="2015/05/24 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="cancelMoment" value="29/05/2015 19:45"/>
+		<property name="cancelMoment" value="2015/05/29 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk1"/>
@@ -1008,9 +1158,9 @@
 	
 	<bean id="order6" class="domain.Order">
 		<property name="ticker" value="694721-AHCD"/>
-		<property name="placementMoment" value="20/05/2015 17:55"/>
+		<property name="placementMoment" value="2015/05/20 17:55"/>
 		<property name="address" value="calle Cádiz nº8"/>
-		<property name="deliveryMoment" value="25/05/2015 19:45"/>
+		<property name="deliveryMoment" value="2015/05/25 19:45"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="consumer" ref="consumer3"/>
 		<property name="clerk" ref="clerk2"/>
@@ -1023,15 +1173,45 @@
 	
 	<bean id="order7" class="domain.Order">
 		<property name="ticker" value="654321-018J"/>
-		<property name="placementMoment" value="26/09/2015 17:55"/>
+		<property name="placementMoment" value="2015/09/26 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="deliveryMoment" value="29/09/2015 10:00"/>
+		<property name="deliveryMoment" value="2015/09/29 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk3"/>
 		<property name="orderItems">
 			<list>
 				<ref bean="orderItem7"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="order8" class="domain.Order">
+		<property name="ticker" value="654748-Q9DJ"/>
+		<property name="placementMoment" value="2015/09/16 18:55"/>
+		<property name="address" value="calle Afrodita nº2"/>
+		<property name="deliveryMoment" value="2015/09/19 10:00"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="consumer" ref="consumer4"/>
+		<property name="clerk" ref="clerk1"/>
+		<property name="orderItems">
+			<list>
+				<ref bean="orderItem8"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="order9" class="domain.Order">
+		<property name="ticker" value="108748-Q9F4"/>
+		<property name="placementMoment" value="2015/09/21 18:55"/>
+		<property name="address" value="calle Afrodita nº2"/>
+		<property name="deliveryMoment" value="2015/09/22 10:00"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="consumer" ref="consumer4"/>
+		<property name="clerk" ref="clerk2"/>
+		<property name="orderItems">
+			<list>
+				<ref bean="orderItem9"/>
 			</list>
 		</property>
 	</bean>
@@ -1054,7 +1234,7 @@
 		<property name="tax" value="4"/>
 		<property name="nameCategory" value="alimentos"/>
 		<property name="units" value="2"/>
-		<property name="order" ref="order1"></property>
+		<property name="order" ref="order1"/>
 	</bean>
 	
 	<bean id="orderItem2" class="domain.OrderItem">
@@ -1073,7 +1253,7 @@
 		<property name="tax" value="21"/>
 		<property name="nameCategory" value="electronica"/>
 		<property name="units" value="1"/>
-		<property name="order" ref="order2"></property>
+		<property name="order" ref="order2"/>
 	</bean>
 	
 	<bean id="orderItem3" class="domain.OrderItem">
@@ -1090,7 +1270,7 @@
 		<property name="tax" value="21"/>
 		<property name="nameCategory" value="cosmética"/>
 		<property name="units" value="3"/>
-		<property name="order" ref="order3"></property>
+		<property name="order" ref="order3"/>
 	</bean>
 	
 	<bean id="orderItem4" class="domain.OrderItem">
@@ -1109,7 +1289,7 @@
 		<property name="tax" value="4"/>
 		<property name="nameCategory" value="alimentos"/>
 		<property name="units" value="3"/>
-		<property name="order" ref="order4"></property>
+		<property name="order" ref="order4"/>
 	</bean>
 	
 	<bean id="orderItem5" class="domain.OrderItem">
@@ -1128,7 +1308,7 @@
 		<property name="tax" value="21"/>
 		<property name="nameCategory" value="electronica"/>
 		<property name="units" value="1"/>
-		<property name="order" ref="order5"></property>
+		<property name="order" ref="order5"/>
 	</bean>
 	
 	<bean id="orderItem6" class="domain.OrderItem">
@@ -1147,7 +1327,7 @@
 		<property name="tax" value="4"/>
 		<property name="nameCategory" value="alimentos"/>
 		<property name="units" value="5"/>
-		<property name="order" ref="order6"></property>
+		<property name="order" ref="order6"/>
 	</bean>
 	
 	<bean id="orderItem7" class="domain.OrderItem">
@@ -1164,7 +1344,45 @@
 		<property name="tax" value="21"/>
 		<property name="nameCategory" value="cosmética"/>
 		<property name="units" value="2"/>
-		<property name="order" ref="order7"></property>
+		<property name="order" ref="order7"/>
+	</bean>
+	
+	<bean id="orderItem8" class="domain.OrderItem">
+		<property name="sku" value="Vl-3H95"/>
+		<property name="name" value="Filete de cerdo"/>
+		<property name="description" value="Filete bueno y barato"/>
+		<property name="price" value="3.50"/>
+		<property name="tags">
+			<list>
+				<value>Filete</value>
+				<value>Cerdo</value>
+				<value>Carne</value>
+			</list>
+		</property>
+		<property name="deleted" value="false"/>
+		<property name="tax" value="4"/>
+		<property name="nameCategory" value="alimentos"/>
+		<property name="units" value="1"/>
+		<property name="order" ref="order8"/>
+	</bean>
+	
+	<bean id="orderItem9" class="domain.OrderItem">
+		<property name="sku" value="AB-H6GH"/>
+		<property name="name" value="Turrón de chocolate"/>
+		<property name="description" value="se acerca la navidad, compra el mejor turron de chocolate"/>
+		<property name="price" value="1.99"/>
+		<property name="tags">
+			<list>
+				<value>Dulce</value>
+				<value>Turron</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
+		<property name="deleted" value="false"/>
+		<property name="tax" value="4"/>
+		<property name="nameCategory" value="alimentos"/>
+		<property name="units" value="5"/>
+		<property name="order" ref="order9"/>
 	</bean>
 	
 </beans>
