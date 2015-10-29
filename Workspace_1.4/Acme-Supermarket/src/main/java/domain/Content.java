@@ -16,7 +16,6 @@ public class Content extends DomainEntity{
 
 	// Attributes -------------------------------------------------------------
 	private int units;
-	private Item item;
 	
 	//NotNull
 	@Min(1)
@@ -29,6 +28,7 @@ public class Content extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
+	private Item item;
 	private ShoppingCart shoppingCart;
 	
 	@Valid

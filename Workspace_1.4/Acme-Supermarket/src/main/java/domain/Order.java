@@ -95,7 +95,7 @@ public class Order extends DomainEntity{
 	
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
-	private Collection<OrderItem> orderItem;
+	private Collection<OrderItem> orderItems;
 	private Consumer consumer;
 	
 	@Valid
@@ -110,11 +110,11 @@ public class Order extends DomainEntity{
 	@NotNull
 	@OneToMany(mappedBy = "order")
 	@NotEmpty
-	public Collection<OrderItem> getOrderItem() {
-		return orderItem;
+	public Collection<OrderItem> getOrderItems() {
+		return orderItems;
 	}
-	public void setOrderItem(Collection<OrderItem> orderItem) {
-		this.orderItem = orderItem;
+	public void setOrderItems(Collection<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 	
 	@Valid

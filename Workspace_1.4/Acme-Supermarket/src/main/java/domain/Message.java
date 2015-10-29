@@ -59,8 +59,8 @@ public class Message extends DomainEntity{
 	
 	// Relationships ----------------------------------------------------------	
 	private Actor sender;
-	private Collection<Actor> recipient;
-	private Collection<Folder> folder;
+	private Collection<Actor> recipients;
+	private Collection<Folder> folders;
 	
 	@NotNull
 	@Valid
@@ -76,22 +76,22 @@ public class Message extends DomainEntity{
 	@NotNull
 	@ManyToMany
 	@NotEmpty
-	public Collection<Actor> getRecipient() {
-		return recipient;
+	public Collection<Actor> getRecipients() {
+		return recipients;
 	}
-	public void setRecipient(Collection<Actor> recipient) {
-		this.recipient = recipient;
+	public void setRecipients(Collection<Actor> recipients) {
+		this.recipients = recipients;
 	}
 	
 	@Valid
 	@NotNull
 	@Size(min = 2)
-	@ManyToMany(mappedBy = "message")
-	public Collection<Folder> getFolder() {
-		return folder;
+	@ManyToMany(mappedBy = "messages")
+	public Collection<Folder> getFolders() {
+		return folders;
 	}
-	public void setFolder(Collection<Folder> folder) {
-		this.folder = folder;
+	public void setFolders(Collection<Folder> folders) {
+		this.folders = folders;
 	}
 	
 }
