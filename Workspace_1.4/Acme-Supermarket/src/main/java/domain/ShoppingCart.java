@@ -18,20 +18,20 @@ public class ShoppingCart extends DomainEntity{
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private Collection<String> comment;
+	private Collection<String> comments;
 	
 	@ElementCollection
-	public Collection<String> getComment() {
-		return comment;
+	public Collection<String> getComments() {
+		return comments;
 	}
-	public void setComment(Collection<String> comment) {
-		this.comment = comment;
+	public void setComments(Collection<String> comments) {
+		this.comments = comments;
 	}
 	public boolean addComment(String e) {
-		return comment.add(e);
+		return comments.add(e);
 	}
 	public boolean removeComment(Object o) {
-		return comment.remove(o);
+		return comments.remove(o);
 	}
 	
 	// Relationships ----------------------------------------------------------
