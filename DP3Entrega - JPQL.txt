@@ -6,48 +6,56 @@ DP3Entrega: JPQL
 	Query con cancelMoment (No nos piden que lo filtremos): select c1 from Consumer c1, Consumer c2 join c1.orders o1 join c2.orders o2 where o1.cancelMoment is null and o2.cancelMoment is null group by c1 having max(o1) >= max(o2);
 	Descripción textual: —
 	Resultado: -
+	Anotaciones: No tenemos en cuenta que se hayan cancelado las orders. Nos preguntan por las placed por lo que tomamos el placementMoment como filtro.
 
 2)	Query C/2
 	12.7.2 Display a dashboard with the following information: The consumer/s who has/have spent more money on their orders. 􏰀
 	Query: select c from Consumer c join c.order o join o.orderItem oi
 	Descripción textual: -
 	Resultado: -
+	Anotaciones: -
 
 3)	Query C/3
 	12.7.3 Display a dashboard with the following information: The best-selling item/s in the inventory.
 	Query: select oi.name, sum(oi.units) from OrderItem oi join oi.order o where o.cancelMoment is null group by oi.sku;
 	Descripción textual: -
 	Resultado: -
+	Anotaciones: -
 
 4)	Query C/4
 	12.7.4 Display a dashboard with the following information:􏰀 The worst-selling item/s in the inventory.
 	Query: select i from Item i join i.user u join u.order o where o.deliveryMoment is not null join o.orderItem oi
 	Descripción textual: -
 	Resultado: -
+	Anotaciones: -
 
 5)	Query B/1
 	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select max(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
-	Descripción textual: Select the clerk and join him/her with their orders. Filter the order by removing those which haven’t been delivered and taking the order whose size is the biggest one.
+	Descripción textual: -
 	Resultado: -
+	Anotaciones: En la parte derecha nos devuelve el max de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
 
 6)	Query B/2
 	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select min(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
-	Descripción textual: Select the clerk and join him/her with their orders. Filter the order by removing those which haven’t been delivered and taking the order whose size is the smallest one.
+	Descripción textual: -
 	Resultado: -
+	Anotaciones: En la parte derecha nos devuelve el min de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
 
 7)	Query B/3
 	17.6.3 Display a dashboard with the following information: The consumer/s who has/have cancelled more orders.
 	Query: select c1 from Consumer c1, Consumer c2 join c1.orders o1 join c2.orders o2 where o1.cancelMoment is not null and o2.cancelMoment is not null group by c1 having max(o1) >= max(o2);
 	Descripción textual: -
 	Resultado: -
+	Anotaciones: -
 
 8)	Query B/4
 	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
 	Query: -
 	Descripción textual: -
 	Resultado: -
+	Anotaciones: -
 
 9)	Query B/5
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
@@ -55,12 +63,14 @@ DP3Entrega: JPQL
 	Query de ayuda: select count(o) from Order o where o.cancelMoment between 'CURRENT_DATE' and 'MONTH(CURRENT_DATE)-1';
 	Descripción textual: Select the average of orders that have been cancelled and their cancelMoment is between the current date of the system and the current year and a month back.
 	Resultado: -
+	Anotaciones: Falta testar la query
 
 10)	Query A/1
 	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
 	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
 	Descripción textual: Select an item which is not deleted whose Collection<Comment> has a size equals to the biggest size of a Collection<Comment> of an Item which is not deleted too.
 	Resultado: -
+	Anotaciones: Query acabada y testada.
 
 Dudas (Las dudas resueltas no las borréis sin un previo consenso del grupo… vamos, que no borréis a lo loco.):
 
