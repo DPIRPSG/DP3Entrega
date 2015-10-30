@@ -6,7 +6,7 @@ DP3Entrega: JPQL
 	Query con cancelMoment (No nos piden que lo filtremos): select c1 from Consumer c1, Consumer c2 join c1.orders o1 join c2.orders o2 where o1.cancelMoment is null and o2.cancelMoment is null group by c1 having max(o1) >= max(o2);
 	Descripción textual: —
 	Resultado: -
-	Anotaciones: No tenemos en cuenta que se hayan cancelado las orders. Nos preguntan por las placed por lo que tomamos el placementMoment como filtro.
+	Anotaciones: No vamos a tener en cuenta que se hayan cancelado las orders. Nos preguntan por las placed por lo que tomamos el placementMoment como filtro.
 
 2)	Query C/2
 	12.7.2 Display a dashboard with the following information: The consumer/s who has/have spent more money on their orders. 􏰀
