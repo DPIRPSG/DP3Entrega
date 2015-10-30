@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -34,6 +36,7 @@ public class Order extends DomainEntity{
 	private Date deliveryMoment;
 	private Date cancelMoment;
 	private CreditCard creditCard;
+	private Double amount;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -90,6 +93,15 @@ public class Order extends DomainEntity{
 	}
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
+	}
+	
+	@Min(0)
+	@Digits(integer = 9, fraction = 2)
+	public Double getAmount() {
+		return amount;
+	}
+	public void setAmount(Double amount){
+		this.amount = amount;
 	}
 	
 	
