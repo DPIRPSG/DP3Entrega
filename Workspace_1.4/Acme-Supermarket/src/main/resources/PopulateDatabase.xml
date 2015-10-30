@@ -1094,6 +1094,7 @@
 				<ref bean="orderItem1"/>
 			</list>
 		</property>
+		<property name="amount" value="3.98" />
 	</bean>
 	
 	<bean id="order2" class="domain.Order">
@@ -1109,6 +1110,7 @@
 				<ref bean="orderItem2"/>
 			</list>
 		</property>
+		<property name="amount" value="699.99" />
 	</bean>
 	
 	<bean id="order3" class="domain.Order">
@@ -1124,6 +1126,7 @@
 				<ref bean="orderItem3"/>
 			</list>
 		</property>
+		<property name="amount" value="32.7" />
 	</bean>
 	
 	<bean id="order4" class="domain.Order">
@@ -1139,6 +1142,7 @@
 				<ref bean="orderItem4"/>
 			</list>
 		</property>
+		<property name="amount" value="10.5" />
 	</bean>
 	
 	<bean id="order5" class="domain.Order">
@@ -1154,6 +1158,7 @@
 				<ref bean="orderItem5"/>
 			</list>
 		</property>
+		<property name="amount" value="699.99" />
 	</bean>
 	
 	<bean id="order6" class="domain.Order">
@@ -1169,6 +1174,7 @@
 				<ref bean="orderItem6"/>
 			</list>
 		</property>
+		<property name="amount" value="9.95" />
 	</bean>
 	
 	<bean id="order7" class="domain.Order">
@@ -1184,6 +1190,7 @@
 				<ref bean="orderItem7"/>
 			</list>
 		</property>
+		<property name="amount" value="21.8" />
 	</bean>
 	
 	<bean id="order8" class="domain.Order">
@@ -1199,6 +1206,7 @@
 				<ref bean="orderItem8"/>
 			</list>
 		</property>
+		<property name="amount" value="3.5" />
 	</bean>
 	
 	<bean id="order9" class="domain.Order">
@@ -1214,6 +1222,7 @@
 				<ref bean="orderItem9"/>
 			</list>
 		</property>
+		<property name="amount" value="9.95" />
 	</bean>
 	
 	<!-- OrderItem -->
