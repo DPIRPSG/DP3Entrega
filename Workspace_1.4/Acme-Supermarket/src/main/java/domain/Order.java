@@ -36,7 +36,7 @@ public class Order extends DomainEntity{
 	private Date deliveryMoment;
 	private Date cancelMoment;
 	private CreditCard creditCard;
-	private Double amount;
+	private double amount;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -97,10 +97,10 @@ public class Order extends DomainEntity{
 	
 	@Min(0)
 	@Digits(integer = 9, fraction = 2)
-	public Double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount){
+	public void setAmount(double amount){
 		this.amount = amount;
 	}
 	
