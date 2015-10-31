@@ -18,25 +18,25 @@ public class ShoppingCart extends DomainEntity{
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private Collection<String> comment;
+	private Collection<String> comments;
 	
 	@ElementCollection
-	public Collection<String> getComment() {
-		return comment;
+	public Collection<String> getComments() {
+		return comments;
 	}
-	public void setComment(Collection<String> comment) {
-		this.comment = comment;
+	public void setComments(Collection<String> comments) {
+		this.comments = comments;
 	}
 	public boolean addComment(String e) {
-		return comment.add(e);
+		return comments.add(e);
 	}
 	public boolean removeComment(Object o) {
-		return comment.remove(o);
+		return comments.remove(o);
 	}
 	
 	// Relationships ----------------------------------------------------------
 	private Consumer consumer;
-	private Collection<Content> content;
+	private Collection<Content> contents;
 
 	@Valid
 	@NotNull
@@ -48,13 +48,14 @@ public class ShoppingCart extends DomainEntity{
 		this.consumer = consumer;
 	}
 	
+	@Valid
 	@OneToMany(mappedBy = "shoppingCart")
 	@NotNull
-	public Collection<Content> getContent() {
-		return content;
+	public Collection<Content> getContents() {
+		return contents;
 	}
-	public void setContent(Collection<Content> content) {
-		this.content = content;
+	public void setContents(Collection<Content> contents) {
+		this.contents = contents;
 	}
 	
 	

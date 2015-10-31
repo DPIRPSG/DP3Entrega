@@ -6,6 +6,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,15 +18,16 @@ public class Clerk extends Actor {
 	// Attributes -------------------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Order> order;
+	private Collection<Order> orders;
 
 	@OneToMany(mappedBy = "clerk")
+	@Valid
 	@NotNull
-	public Collection<Order> getOrder() {
-		return order;
+	public Collection<Order> getOrders() {
+		return orders;
 	}
-	public void setOrder(Collection<Order> order) {
-		this.order = order;
+	public void setOrders(Collection<Order> orders) {
+		this.orders = orders;
 	}
 
 

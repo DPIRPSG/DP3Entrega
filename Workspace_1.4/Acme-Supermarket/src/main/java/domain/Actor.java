@@ -71,21 +71,23 @@ public abstract class Actor extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Collection<Folder> folder;
+	private Collection<Folder> folders;
 	private Collection<Message> sent;
 	private Collection<Message> received;
 	private UserAccount userAccount;
 	
 	@NotNull
-	@OneToMany(mappedBy = "owner")
+	@Valid
+	@OneToMany(mappedBy = "actor")
 	@Size(min = 3)
-	public Collection<Folder> getFolder() {
-		return folder;
+	public Collection<Folder> getFolders() {
+		return folders;
 	}
-	public void setFolder(Collection<Folder> folder) {
-		this.folder = folder;
+	public void setFolders(Collection<Folder> folders) {
+		this.folders = folders;
 	}
 	
+	@Valid
 	@OneToMany(mappedBy = "sender")
 	@NotNull
 	public Collection<Message> getSent() {
@@ -95,8 +97,9 @@ public abstract class Actor extends DomainEntity{
 		this.sent = sent;
 	}
 	
+	@Valid
 	@NotNull
-	@ManyToMany(mappedBy = "recipient")
+	@ManyToMany(mappedBy = "recipients")
 	public Collection<Message> getReceived() {
 		return received;
 	}

@@ -40,27 +40,27 @@ public class Folder extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Actor owner;
-	private Collection<Message> message;
+	private Actor actor;
+	private Collection<Message> messages;
 	
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Actor getOwner() {
-		return owner;
+	public Actor getActor() {
+		return actor;
 	}
-	public void setOwner(Actor owner) {
-		this.owner = owner;
+	public void setActor(Actor actor) {
+		this.actor = actor;
 	}
 	
 	@Valid
 	@ManyToMany
 	@NotNull
-	public Collection<Message> getMessage() {
-		return message;
+	public Collection<Message> getMessages() {
+		return messages;
 	}
-	public void setMessage(Collection<Message> message) {
-		this.message = message;
+	public void setMessages(Collection<Message> messages) {
+		this.messages = messages;
 	}
 	
 

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -34,6 +36,7 @@ public class Order extends DomainEntity{
 	private Date deliveryMoment;
 	private Date cancelMoment;
 	private CreditCard creditCard;
+	private double amount;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -49,7 +52,7 @@ public class Order extends DomainEntity{
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getPlacementMoment() {
 		return placementMoment;
 	}
@@ -67,7 +70,7 @@ public class Order extends DomainEntity{
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getDeliveryMoment() {
 		return deliveryMoment;
 	}
@@ -76,7 +79,7 @@ public class Order extends DomainEntity{
 	}
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
 	public Date getCancelMoment() {
 		return cancelMoment;
 	}
@@ -92,10 +95,19 @@ public class Order extends DomainEntity{
 		this.creditCard = creditCard;
 	}
 	
+	@Min(0)
+	@Digits(integer = 9, fraction = 2)
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount){
+		this.amount = amount;
+	}
+	
 	
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
-	private Collection<OrderItem> orderItem;
+	private Collection<OrderItem> orderItems;
 	private Consumer consumer;
 	
 	@Valid
@@ -107,14 +119,15 @@ public class Order extends DomainEntity{
 		this.clerk = clerk;
 	}
 	
+	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "order")
 	@NotEmpty
-	public Collection<OrderItem> getOrderItem() {
-		return orderItem;
+	public Collection<OrderItem> getOrderItems() {
+		return orderItems;
 	}
-	public void setOrderItem(Collection<OrderItem> orderItem) {
-		this.orderItem = orderItem;
+	public void setOrderItems(Collection<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 	
 	@Valid
