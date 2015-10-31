@@ -10,14 +10,15 @@ DP3Entrega: JPQL
 
 2)	Query C/2
 	12.7.2 Display a dashboard with the following information: The consumer/s who has/have spent more money on their orders. 􏰀
-	Query: select c from Consumer c join c.order o join o.orderItem oi
+	Query: select c from Consumer c join c.orders o group by c having o.amount = (select max(o.amount) from Order o);
+	Query de ayuda: select sum(oi.price*oi.units) from OrderItem oi join oi.order o group by o;
 	Descripción textual: -
 	Resultado: -
-	Anotaciones: -
+	Anotaciones: No hay orders con más de un orderItem. Hay que crear un OrderItem y añadirlo a un order ya creado para que haya un Order con varios OrderItem
 
 3)	Query C/3
 	12.7.3 Display a dashboard with the following information: The best-selling item/s in the inventory.
-	Query: select oi.name, sum(oi.units) from OrderItem oi join oi.order o where o.cancelMoment is null group by oi.sku;
+	Query: select oi.name, sum(oi.units) from OrderItem oi join oi.orders o where o.cancelMoment is null group by oi.sku;
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: -
