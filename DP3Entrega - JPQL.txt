@@ -31,6 +31,7 @@ DP3Entrega: JPQL
 5)	Query B/1
 	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select max(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query de ayuda: select c.id, count(o) from Clerk c join c.orders o where o.deliveryMoment is not null group by c having count(o) = 1;
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: En la parte derecha nos devuelve el max de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
@@ -38,6 +39,7 @@ DP3Entrega: JPQL
 6)	Query B/2
 	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select min(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query de ayuda: select count(c.orders.size) as x from Clerk c join c.orders o where o.deliveryMoment is not null group by c;
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: En la parte derecha nos devuelve el min de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
@@ -58,11 +60,11 @@ DP3Entrega: JPQL
 
 9)	Query B/5
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
-	Query: -
-	Query de ayuda: select count(o) from Order o where o.cancelMoment between 'CURRENT_DATE' and 'MONTH(CURRENT_DATE)-1';
-	Descripción textual: Select the average of orders that have been cancelled and their cancelMoment is between the current date of the system and the current year and a month back.
+	Query: 
+	Query de ayuda: select count(o) from Order o where o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE)-1 || '/' || day(CURRENT_DATE) and CURRENT_DATE group by o;
+	Descripción textual: -
 	Resultado: -
-	Anotaciones: Falta testar la query
+	Anotaciones: Lo que creemos que tiene que hacer es (Canceladas este mes de las placed este mes) / (Placed este mes)
 
 10)	Query A/1
 	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
