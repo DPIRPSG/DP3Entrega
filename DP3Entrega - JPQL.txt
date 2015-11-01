@@ -60,8 +60,10 @@ DP3Entrega: JPQL
 
 9)	Query B/5
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
-	Query: 
-	Query de ayuda: select count(o) from Order o where o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE)-1 || '/' || day(CURRENT_DATE) and CURRENT_DATE group by o;
+	Query: select avg(o.isCanceled) from Order o where o.placementMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_DATE and o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_DATE;
+	Query 2: select avg(o.isCanceled) from Order o where o.placementMoment >= (year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01') and o.placementMoment <= CURRENT_DATE and o.cancelMoment >= (year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01') and o.cancelMoment <= CURRENT_DATE;
+	Query de ayuda: select count(o) from Order o where o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_DATE group by o;
+	Query de ayuda 2: select count(o) from Order o where o.placementMoment between '2015/11/01' and '2015/11/02' and o.cancelMoment between '2015/11/01' and '2015/11/02' group by o;
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: Lo que creemos que tiene que hacer es (Canceladas este mes de las placed este mes) / (Placed este mes)
