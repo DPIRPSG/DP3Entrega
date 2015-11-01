@@ -16,6 +16,7 @@ DP3Entrega: JPQL
 
 3)	Query C/3
 	12.7.3 Display a dashboard with the following information: The best-selling item/s in the inventory.
+<<<<<<< HEAD
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
 	Descripción textual: -
 	Resultado: -
@@ -102,3 +103,85 @@ Dudas (Las dudas resueltas no las borréis sin un previo consenso del grupo… v
 9)	Preguntar si las fechas se hacen así.
 
 10)	Parece que funciona
+=======
+	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: Query acabada y testada. Si la query de ayuda (la misma que hay detrás del = en la query a entregar) devuelve varios objetos petaba, pero si en vez de poner objeto.atributo = select ponemos objeto.atributo IN select funciona a la perfección. Dadle las gracias a este post (http://www.antoniopol.com/blog/como-solucionar-el-error-subquery-returns-more-than-1-row-en-mysql/). 
+
+4)	Query C/4
+	12.7.4 Display a dashboard with the following information:􏰀 The worst-selling item/s in the inventory.
+	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having min(oi.units) = (select min(oi.units) from OrderItem oi));
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: Query acabada y testada. Si la query de ayuda (la misma que hay detrás del = en la query a entregar) devuelve varios objetos petaba, pero si en vez de poner objeto.atributo = select ponemos objeto.atributo IN select funciona a la perfección. Dadle las gracias a este post (http://www.antoniopol.com/blog/como-solucionar-el-error-subquery-returns-more-than-1-row-en-mysql/).
+
+5)	Query B/1
+	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
+	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select max(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query de ayuda: select c.id, count(o) from Clerk c join c.orders o where o.deliveryMoment is not null group by c having count(o) = 1;
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: En la parte derecha nos devuelve el max de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
+
+6)	Query B/2
+	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
+	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select min(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query de ayuda: select count(c.orders.size) as x from Clerk c join c.orders o where o.deliveryMoment is not null group by c;
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: En la parte derecha nos devuelve el min de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
+
+7)	Query B/3
+	17.6.3 Display a dashboard with the following information: The consumer/s who has/have cancelled more orders.
+	Query: select c1 from Consumer c1, Consumer c2 join c1.orders o1 join c2.orders o2 where o1.cancelMoment is not null and o2.cancelMoment is not null group by c1 having max(o1) >= max(o2);
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: -
+
+8)	Query B/4
+	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
+	Query: -
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: -
+
+9)	Query B/5
+	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
+	Query de Guillermo: select avg(o.isCanceled) from Order o where o.placementMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_TIMESTAMP and o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_TIMESTAMP;
+	Query de Carlos: select avg(o.isCanceled) from Order o where month(o.placementMoment) = month(CURRENT_DATE) and year(o.placementMoment) = year(CURRENT_DATE) and month(o.cancelMoment) = month(CURRENT_DATE) and year(o.cancelMoment) = year(CURRENT_DATE);
+	Descripción textual: -
+	Resultado: -
+	Anotaciones: -
+
+10)	Query A/1
+	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
+	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
+	Descripción textual: Select an item which is not deleted whose Collection<Comment> has a size equals to the biggest size of a Collection<Comment> of an Item which is not deleted too.
+	Resultado: -
+	Anotaciones: Query acabada y testada.
+
+Dudas (Las dudas resueltas no las borréis sin un previo consenso del grupo… vamos, que no borréis a lo loco.):
+
+1)	¿Los cancelados se consideran placed?
+	No me termina de convencer el c.order.size
+2)	POR TERMINAR
+	¿Hace falta un group by en alguna parte de la query? Quizás para ir agrupando por Order pero no sé.
+	Recordar que hay que tener en cuenta el precio y las unidades pedidas.
+	¿La suma de oi.price*oi.units a qué se iguala, o dónde se va guardando?
+	Hay que crear variables derivadas. Quizás un price en Order o un spentMoney en Consumer
+3)	POR TERMINAR
+	Al igual que en 2), ¿los oi.units a qué se igualan?
+4)	POR TERMINAR
+	Análogo a 3), cuando sepamos hacerlo se resolverán juntos.
+
+5)	La parte de c.order.size está mal; queremos sacar un número de order que cumplen cierta exigencia, no el .size
+6)	Mismo caso que 5).
+7)	Mismo caso que 5).
+8)	Mismo caso que 5).
+9)	Preguntar si las fechas se hacen así.
+
+10)	Parece que funciona
+
+
+>>>>>>> refs/remotes/origin/Guillermo
