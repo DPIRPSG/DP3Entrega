@@ -14,12 +14,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -37,6 +39,7 @@ public class Order extends DomainEntity{
 	private Date cancelMoment;
 	private CreditCard creditCard;
 	private double amount;
+	private int isCanceled;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -104,7 +107,14 @@ public class Order extends DomainEntity{
 		this.amount = amount;
 	}
 	
-	
+	@Range(min=0, max=1)
+	public int getIsCanceled() {
+		return isCanceled;
+	}
+	public void setIsCanceled(int isCanceled) {
+		this.isCanceled = isCanceled;
+	}
+
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
 	private Collection<OrderItem> orderItems;
