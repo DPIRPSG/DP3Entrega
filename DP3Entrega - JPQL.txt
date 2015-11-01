@@ -71,6 +71,9 @@ DP3Entrega: JPQL
 	Resultado: -
 	Anotaciones: Lo que creemos que tiene que hacer es (Canceladas este mes de las placed este mes) / (Placed este mes)
 
+	Creadas y canceladas este mes: month(o.placementMoment) = month(CURRENT_DATE) and year(o.placementMoment) = year(CURRENT_DATE) and month(o.cancelMoment) = month(CURRENT_DATE) and year(o.cancelMoment) = year(CURRENT_DATE)
+	Creadas y entregadas este mes: month(o.placementMoment) = month(CURRENT_DATE) and year(o.placementMoment) = year(CURRENT_DATE)
+	
 10)	Query A/1
 	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
 	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
