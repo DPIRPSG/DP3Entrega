@@ -31,6 +31,7 @@ DP3Entrega: JPQL
 5)	Query B/1
 	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select max(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query 2ª opción(Carlos): select c from Clerk c join c.orders o where o.deliveryMoment is not null group by c having o.size = (select max(o.size) from Clerk c join c.orders o where o.deliveryMoment is not null);
 	Query de ayuda: select c.id, count(o) from Clerk c join c.orders o where o.deliveryMoment is not null group by c having count(o) = 1;
 	DescripciÃ³n textual: -
 	Resultado: -
@@ -39,6 +40,7 @@ DP3Entrega: JPQL
 6)	Query B/2
 	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select min(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Subquery: select count(o) from Clerk c join c.orders o where o.deliveryMoment is not null group by c;
 	Query de ayuda: select count(c.orders.size) as x from Clerk c join c.orders o where o.deliveryMoment is not null group by c;
 	DescripciÃ³n textual: -
 	Resultado: -
@@ -62,6 +64,7 @@ DP3Entrega: JPQL
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
 	Query: 
 	Query de ayuda: select count(o) from Order o where o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE)-1 || '/' || day(CURRENT_DATE) and CURRENT_DATE group by o;
+	Query de prueba(Carlos): select avg(o.isCanceled) from Order o where month(o.cancelMoment) = month(CURRENT_DATE) and year(o.cancelMoment) = year(CURRENT_DATE);
 	DescripciÃ³n textual: -
 	Resultado: -
 	Anotaciones: Lo que creemos que tiene que hacer es (Canceladas este mes de las placed este mes) / (Placed este mes)
