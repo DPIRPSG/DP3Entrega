@@ -1099,9 +1099,9 @@
 	
 	<bean id="order2" class="domain.Order">
 		<property name="ticker" value="654321-FH8J"/>
-		<property name="placementMoment" value="2015/10/28 17:55"/>
+		<property name="placementMoment" value="2015/11/28 17:55"/>
 		<property name="address" value="calle Sevilla nº8"/>
-		<property name="deliveryMoment" value="2015/10/29 10:00"/>
+		<property name="deliveryMoment" value="2015/11/29 10:00"/>
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="consumer" ref="consumer2"/>
 		<property name="clerk" ref="clerk2"/>
