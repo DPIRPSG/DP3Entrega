@@ -37,6 +37,7 @@ public class Order extends DomainEntity{
 	private Date cancelMoment;
 	private CreditCard creditCard;
 	private double amount;
+	private boolean isCanceled;
 	
 	@NotBlank
 	@Column(unique = true)
@@ -104,7 +105,13 @@ public class Order extends DomainEntity{
 		this.amount = amount;
 	}
 	
-	
+	public boolean getIsCanceled() {
+		return isCanceled;
+	}
+	public void setIsCanceled(boolean isCanceled) {
+		this.isCanceled = isCanceled;
+	}
+
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
 	private Collection<OrderItem> orderItems;
