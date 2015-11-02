@@ -1,6 +1,4 @@
-Scripts JPQL
-
-1)	Query C/1
+	Query C/1
 	Especificación: The consumer/s who has/have placed more orders.
 	Query: select c from Consumer c join c.orders o group by c having count(c.orders.size) = (select max(c.orders.size) from Consumer c);
 	Descripción textual: En esta consulta hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Luego realizamos un filtro en el que comprobamos que el número de orders del consumer que estamos analizando sea igual al número de orders del consumer que más orders ha realizado.
@@ -34,7 +32,7 @@ Scripts JPQL
 		orders=[domain.Order@4f, domain.Order@51, domain.Order@52]
 	} 
 
-2)	Query C/2
+	Query C/2
 	Especificación: The consumer/s who has/have spent more money on their orders.
 	Query: select c from Consumer c join c.orders o where o.cancelMoment is null group by c having max(o.amount) = (select max(o.amount) from Order o);
 	Descripción textual: En esta consulta hacemos un join de los consumers con sus orders que no tengan fecha de cancelación y los agrupamos por los propios consumers. Luego realizamos un filtro para quedarnos con el consumer que tenga el order con la cantidad igual a la del order con mayor cantidad.
@@ -54,7 +52,7 @@ Scripts JPQL
 		orders=[domain.Order@4e, domain.Order@50, domain.Order@53]
 	} 
 
-3)	Query C/3
+	Query C/3
 	Especificación: The best-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
 	Descripción textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrupándolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su número de unidades igual al del OrderItem con más unidades.
@@ -74,7 +72,7 @@ Scripts JPQL
 		storages=[domain.Storage@43]
 	}
 
-4)	Query C/4
+	Query C/4
 	Especificación: The worst-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having min(oi.units) = (select min(oi.units) from OrderItem oi));
 	Descripción textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrupándolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su número de unidades igual al del OrderItem con menos unidades.
@@ -109,7 +107,7 @@ Scripts JPQL
 		storages=[domain.Storage@46]
 	} 
 
-5)	Query B/1
+	Query B/1
 	Especificación: The clerk/s who has/have served and delivered more orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) >= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
 	Descripción textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar sólo aquellos clerks cuyo número de orders servidos, y que hayan sido entregados, sea mayor o igual al número de orders servidos y entregados de cada clerk por separado, obteniendo el máximo de ellos y por lo tanto el/los clerk/s que cumplen ese máximo.
@@ -128,7 +126,7 @@ Scripts JPQL
 		orders=[domain.Order@4e, domain.Order@50, domain.Order@52, domain.Order@55]
 	} 
 
-6)	Query B/2
+	Query B/2
 	Especificación: The clerk/s who has/have served and delivered less orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) <= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
 	Descripción textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar sólo aquellos clerks cuyo número de orders servidos, y que hayan sido entregados, sea menor o igual al número de orders servidos y entregados de cada clerk por separado, obteniendo el mínimo de ellos y por lo tanto el/los clerk/s que cumplen ese mínimo.
@@ -161,7 +159,7 @@ Scripts JPQL
 		orders=[domain.Order@4f, domain.Order@53]
 	}
 
-7)	Query B/3
+	Query B/3
 	Especificación: The consumer/s who has/have cancelled more orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) >= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
 	Descripción textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelación, y agrupando por los propios consumers. Luego realizamos un filtro para tomar sólo aquellos consumer cuyo número de orders canceladas sea mayor o igual al número de orders canceladas de cada consumer por separado, obteniendo el máximo de ellos y por lo tanto el/los consumer/s que cumplen ese máximo.
@@ -181,7 +179,7 @@ Scripts JPQL
 		orders=[domain.Order@4f, domain.Order@51, domain.Order@52]
 	} 
 
-8)	Query B/4
+	Query B/4
 	Especificación: Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) <= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
 	Descripción textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelación, y agrupando por los propios consumers. Luego realizamos un filtro para tomar sólo aquellos consumer cuyo número de orders canceladas sea menor o igual al número de orders canceladas de cada consumer por separado, obteniendo el mínimo de ellos y por lo tanto el/los consumer/s que cumplen ese mínimo.
@@ -201,14 +199,14 @@ Scripts JPQL
 		orders=[domain.Order@4e, domain.Order@50, domain.Order@53]
 	} 
 
-9)	Query B/5
+	Query B/5
 	Especificación: Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
 	Query: select (count(distinct o1)*1.0)/(count(distinct o2)*1.0) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
 	Descripción textual: En esta consulta obtenemos el resultado de la división entre los orders que se hayan cancelado este mes y los que se hayan creado/realizado en el mismo. Para ello, discriminamos los las orders que no hayan sido canceladas ni creadas/realizadas en el mes y año. Además realizamos una multiplicación por 1.0 para evitar que se trunque el resultado en caso de que éste sea decimal.
 	Resultado:
 	Object #0 = java.lang.Double{0.66667} 
 
-10)	Query A/1
+	Query A/1
 	Especificación: Display a dashboard with the following information: The item/s that has/have more comments.
 	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
 	Descripción textual: En esta consulta tomamos el item que no haya sido borrado y que tenga como número de comentarios el del item con mayor número de comentarios. Finalmente agrupamos los resultados por su item.
