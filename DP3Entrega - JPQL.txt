@@ -64,6 +64,9 @@ DP3Entrega: JPQL
 	Query de Guillermo: select avg(o.isCanceled) from Order o where o.placementMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_TIMESTAMP and o.cancelMoment between year(CURRENT_DATE) || '/' || month(CURRENT_DATE) || '/01' and CURRENT_TIMESTAMP;
 	Query de Carlos: select avg(o.isCanceled) from Order o where month(o.placementMoment) = month(CURRENT_DATE) and year(o.placementMoment) = year(CURRENT_DATE) and month(o.cancelMoment) = month(CURRENT_DATE) and year(o.cancelMoment) = year(CURRENT_DATE);
 	Query: (select count(o) from Order o where month(o.cancelMoment) = month(CURRENT_DATE) and year(o.cancelMoment) = year(CURRENT_DATE)) / (select count(o) from Order o where month(o.placementMoment) = month(CURRENT_DATE) and year(o.placementMoment) = year(CURRENT_DATE));
+	Query2: select count(o1)/count(o2) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
+	Query3: select count(o1)/(select count(o2) from Order o2 where (month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE))) from Order o1 where (month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE));
+	Query4: select count(o1)/count(o2) from Order o1 in (select Order o1 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE)), Order o2 in (select Order o2 where month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE));
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: -
