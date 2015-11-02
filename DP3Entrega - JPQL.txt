@@ -67,6 +67,7 @@ DP3Entrega: JPQL
 	Query2: select count(o1)/count(o2) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
 	Query3: select count(o1)/(select count(o2) from Order o2 where (month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE))) from Order o1 where (month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE));
 	Query4: select count(o1)/count(o2) from Order o1 in (select Order o1 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE)), Order o2 in (select Order o2 where month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE));
+	QUERY FINAL: select (count(distinct o1)*1.0)/(count(distinct o2)*1.0) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: -
