@@ -1,71 +1,243 @@
 Scripts JPQL
 
 1)	Query C/1
-	12.7.1 Display a dashboard with the following information: The consumer/s who has/have placed more orders.
+	12.7.1 The consumer/s who has/have placed more orders.
 	Query: select c from Consumer c join c.orders o group by c having count(c.orders.size) = (select max(c.orders.size) from Consumer c);
-	Descripci√≥n textual: ‚Äî
-	Resultado: -
-	Anotaciones: Query acabada y testada. No vamos a tener en cuenta que se hayan cancelado las orders. Nos preguntan por las placed por lo que tomamos el placementMoment como filtro.
+	DescripciÛn textual: En esta consulta hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Luego realizamos un filtro en el que comprobamos que el n˙mero de orders del consumer que estamos analizando sea igual al n˙mero de orders del consumer que m·s orders ha realizado.
+	Resultado:
+	Object #0 = domain.Consumer{
+		id=13
+		version=1
+		name="Ruben"
+		surname="Sanchez"
+		email="ruben@mail.com"
+		phone="612342289"
+		folders=[domain.Folder@20, domain.Folder@21, domain.Folder@22]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@5
+		shoppingCart=domain.ShoppingCart@e
+		orders=[domain.Order@4e, domain.Order@50, domain.Order@53]
+	} 
+	Object #1 = domain.Consumer{
+		id=15
+		version=1
+		name="Guillermo"
+		surname="Alcala"
+		email="guillermo@mail.com"
+		phone="633422897"
+		folders=[domain.Folder@23, domain.Folder@24, domain.Folder@25]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@6
+		shoppingCart=domain.ShoppingCart@10
+		orders=[domain.Order@4f, domain.Order@51, domain.Order@52]
+	} 
 
 2)	Query C/2
-	12.7.2 Display a dashboard with the following information: The consumer/s who has/have spent more money on their orders.
+	12.7.2 The consumer/s who has/have spent more money on their orders.
 	Query: select c from Consumer c join c.orders o where o.cancelMoment is null group by c having max(o.amount) = (select max(o.amount) from Order o);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: Query acabada. No hay orders con m√°s de un orderItem. Sobre lo de que ‚ÄúHay que crear un OrderItem y a√±adirlo a un order ya creado para que haya un Order con varios OrderItem.‚Äù, ya no hace falta porque el amount funciona por debajo d√°ndonos todo lo que necesitamos.
+	DescripciÛn textual: En esta consulta hacemos un join de los consumers con sus orders que no tengan fecha de cancelaciÛn y los agrupamos por los propios consumers. Luego realizamos un filtro para quedarnos con el consumer que tenga el order con la cantidad igual a la del order con mayor cantidad.
+	Resultado:
+	Object #0 = domain.Consumer{
+		id=13
+		version=1
+		name="Ruben"
+		surname="Sanchez"
+		email="ruben@mail.com"
+		phone="612342289"
+		folders=[domain.Folder@20, domain.Folder@21, domain.Folder@22]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@5
+		shoppingCart=domain.ShoppingCart@e
+		orders=[domain.Order@4e, domain.Order@50, domain.Order@53]
+	} 
 
 3)	Query C/3
-	12.7.3 Display a dashboard with the following information: The best-selling item/s in the inventory.
+	12.7.3 The best-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: Query acabada y testada. Si la query de ayuda (la misma que hay detr√°s del = en la query a entregar) devuelve varios objetos petaba, pero si en vez de poner objeto.atributo = select ponemos objeto.atributo IN select funciona a la perfecci√≥n. Dadle las gracias a este post (http://www.antoniopol.com/blog/como-solucionar-el-error-subquery-returns-more-than-1-row-en-mysql/). 
+	DescripciÛn textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup·ndolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n˙mero de unidades igual al del OrderItem con m·s unidades.
+	Resultado:
+	Object #0 = domain.Item{
+		id=52
+		version=0
+		sku="AB-H6GH"
+		name="TurrÛn de chocolate"
+		description="se acerca la navidad, compra el mejor turron de chocolate"
+		price=1.99
+		tags=[Dulce, Turron, Chocolate]
+		picture=<null>
+		deleted=<<false>>
+		category=domain.Category@31
+		comments=[domain.Comment@39]
+		storages=[domain.Storage@43]
+	}
 
 4)	Query C/4
-	12.7.4 Display a dashboard with the following information:Ùè∞Ä The worst-selling item/s in the inventory.
+	12.7.4 The worst-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having min(oi.units) = (select min(oi.units) from OrderItem oi));
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: Query acabada y testada. Si la query de ayuda (la misma que hay detr√°s del = en la query a entregar) devuelve varios objetos petaba, pero si en vez de poner objeto.atributo = select ponemos objeto.atributo IN select funciona a la perfecci√≥n. Dadle las gracias a este post (http://www.antoniopol.com/blog/como-solucionar-el-error-subquery-returns-more-than-1-row-en-mysql/).
+	DescripciÛn textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup·ndolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n˙mero de unidades igual al del OrderItem con menos unidades.
+
+	Resultado:
+	Object #0 = domain.Item{
+		id=53
+		version=0
+		sku="CJ-C8JW"
+		name="Televisor"
+		description="El mejor televisor para las mejores series"
+		price=699.99
+		tags=[TV, Full-HD, Smart-TV]
+		picture=<null>
+		deleted=<<false>>
+		category=domain.Category@32
+		comments=[domain.Comment@3a]
+		storages=[domain.Storage@44]
+	} 
+	Object #1 = domain.Item{
+		id=55
+		version=0
+		sku="Vl-3H95"
+		name="Filete de cerdo"
+		description="Filete bueno y barato"
+		price=3.5
+		tags=[Filete, Cerdo, Carne]
+		picture=<null>
+		deleted=<<false>>
+		category=domain.Category@31
+		comments=[domain.Comment@3d, domain.Comment@3e]
+		storages=[domain.Storage@46]
+	} 
 
 5)	Query B/1
-	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
+	17.6.1 The clerk/s who has/have served and delivered more orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) >= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: En la parte derecha nos devuelve el max de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
+	DescripciÛn textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar sÛlo aquellos clerks cuyo n˙mero de orders servidos, y que hayan sido entregados, sea mayor o igual al n˙mero de orders servidos y entregados de cada clerk por separado, obteniendo el m·ximo de ellos y por lo tanto el/los clerk/s que cumplen ese m·ximo.
+	Resultado:
+	Object #0 = domain.Clerk{
+		id=20
+		version=0
+		name="Ana"
+		surname="pozo"
+		email="ana@mail.com"
+		phone="633946087"
+		folders=[domain.Folder@26, domain.Folder@27, domain.Folder@28]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@7
+		orders=[domain.Order@4e, domain.Order@50, domain.Order@52, domain.Order@55]
+	} 
 
 6)	Query B/2
-	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
+	17.6.2 The clerk/s who has/have served and delivered less orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) <= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: En la parte derecha nos devuelve el min de c.orders.size sin un filtro previo de que los deliveryMoment is not null.
+	DescripciÛn textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar sÛlo aquellos clerks cuyo n˙mero de orders servidos, y que hayan sido entregados, sea menor o igual al n˙mero de orders servidos y entregados de cada clerk por separado, obteniendo el mÌnimo de ellos y por lo tanto el/los clerk/s que cumplen ese mÌnimo.
+
+	Resultado:
+	Object #0 = domain.Clerk{
+		id=19
+		version=0
+		name="Carlos"
+		surname="Mata"
+		email="carlos@mail.com"
+		phone="633449087"
+		folders=[domain.Folder@1d, domain.Folder@1e, domain.Folder@1f]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@4
+		orders=[domain.Order@4d, domain.Order@51, domain.Order@54]
+	} 
+	Object #1 = domain.Clerk{
+		id=21
+		version=0
+		name="Alberto"
+		surname="Rodriguez"
+		email="alberto@mail.com"
+		phone="633940257"
+		folders=[domain.Folder@29, domain.Folder@2a, domain.Folder@2b]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@8
+		orders=[domain.Order@4f, domain.Order@53]
+	}
 
 7)	Query B/3
-	17.6.3 Display a dashboard with the following information: The consumer/s who has/have cancelled more orders.
+	17.6.3 The consumer/s who has/have cancelled more orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) >= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: -
+	DescripciÛn textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaciÛn, y agrupando por los propios consumers. Luego realizamos un filtro para tomar sÛlo aquellos consumer cuyo n˙mero de orders canceladas sea mayor o igual al n˙mero de orders canceladas de cada consumer por separado, obteniendo el m·ximo de ellos y por lo tanto el/los consumer/s que cumplen ese m·ximo.
+	Resultado:
+	Object #0 = domain.Consumer{
+		id=15
+		version=1
+		name="Guillermo"
+		surname="Alcala"
+		email="guillermo@mail.com"
+		phone="633422897"
+		folders=[domain.Folder@23, domain.Folder@24, domain.Folder@25]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@6
+		shoppingCart=domain.ShoppingCart@10
+		orders=[domain.Order@4f, domain.Order@51, domain.Order@52]
+	} 
 
 8)	Query B/4
 	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) <= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: -
+	DescripciÛn textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaciÛn, y agrupando por los propios consumers. Luego realizamos un filtro para tomar sÛlo aquellos consumer cuyo n˙mero de orders canceladas sea menor o igual al n˙mero de orders canceladas de cada consumer por separado, obteniendo el mÌnimo de ellos y por lo tanto el/los consumer/s que cumplen ese mÌnimo.
+	Resultado:
+	Object #0 = domain.Consumer{
+		id=13
+		version=1
+		name="Ruben"
+		surname="Sanchez"
+		email="ruben@mail.com"
+		phone="612342289"
+		folders=[domain.Folder@20, domain.Folder@21, domain.Folder@22]
+		sent=[]
+		received=[domain.Message@16]
+		userAccount=security.UserAccount@5
+		shoppingCart=domain.ShoppingCart@e
+		orders=[domain.Order@4e, domain.Order@50, domain.Order@53]
+	} 
 
 9)	Query B/5
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
 	Query: select (count(distinct o1)*1.0)/(count(distinct o2)*1.0) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
-	Descripci√≥n textual: -
-	Resultado: -
-	Anotaciones: -
+	DescripciÛn textual: En esta consulta obtenemos el resultado de la divisiÛn entre los orders que se hayan cancelado este mes y los que se hayan creado/realizado en el mismo. Para ello, discriminamos los las orders que no hayan sido canceladas ni creadas/realizadas en el mes y aÒo. Adem·s realizamos una multiplicaciÛn por 1.0 para evitar que se trunque el resultado en caso de que Èste sea decimal.
+	Resultado:
+	Object #0 = java.lang.Double{0.66667} 
 
 10)	Query A/1
 	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
 	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
-	Descripci√≥n textual: Select an item which is not deleted whose Collection<Comment> has a size equals to the biggest size of a Collection<Comment> of an Item which is not deleted too.
-	Resultado: -
-	Anotaciones: Query acabada y testada.
+	DescripciÛn textual: En esta consulta tomamos el item que no haya sido borrado y que tenga como n˙mero de comentarios el del item con mayor n˙mero de comentarios. Finalmente agrupamos los resultados por su item.
+	Resultado:
+	Object #0 = domain.Item{
+		id=54
+		version=0
+		sku="9G-H58D"
+		name="Colonia"
+		description="Colonia de mujer"
+		price=10.9
+		tags=[Colonia]
+		picture=<null>
+		deleted=<<false>>
+		category=domain.Category@33
+		comments=[domain.Comment@3b, domain.Comment@3c]
+		storages=[domain.Storage@45]
+	} 
+	Object #1 = domain.Item{
+		id=55
+		version=0
+		sku="Vl-3H95"
+		name="Filete de cerdo"
+		description="Filete bueno y barato"
+		price=3.5
+		tags=[Filete, Cerdo, Carne]
+		picture=<null>
+		deleted=<<false>>
+		category=domain.Category@31
+		comments=[domain.Comment@3d, domain.Comment@3e]
+		storages=[domain.Storage@46]
+	}
