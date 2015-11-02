@@ -32,6 +32,7 @@ DP3Entrega: JPQL
 	17.6.1 Display a dashboard with the following information: The clerk/s who has/have served and delivered more orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select max(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
 	Query 2� opci�n(Carlos): select c from Clerk c join c.orders o where o.deliveryMoment is not null group by c having o.size = (select max(o.size) from Clerk c join c.orders o where o.deliveryMoment is not null);
+	Query FINAL: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) >= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
 	Query de ayuda: select c.id, count(o) from Clerk c join c.orders o where o.deliveryMoment is not null group by c having count(o) = 1;
 	Descripción textual: -
 	Resultado: -
@@ -40,6 +41,7 @@ DP3Entrega: JPQL
 6)	Query B/2
 	17.6.2 Display a dashboard with the following information: The clerk/s who has/have served and delivered less orders.
 	Query: select c from Clerk c join c.orders o where o.deliveryMoment is not null and c.orders.size = (select min(c.orders.size) from Clerk c join c.orders o where o.deliveryMoment is not null) group by c;
+	Query FINAL: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) <= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
 	Query de ayuda: select count(c.orders.size) as x from Clerk c join c.orders o where o.deliveryMoment is not null group by c;
 	Descripción textual: -
 	Resultado: -
@@ -48,13 +50,14 @@ DP3Entrega: JPQL
 7)	Query B/3
 	17.6.3 Display a dashboard with the following information: The consumer/s who has/have cancelled more orders.
 	Query: select c1 from Consumer c1, Consumer c2 join c1.orders o1 join c2.orders o2 where o1.cancelMoment is not null and o2.cancelMoment is not null group by c1 having max(o1) >= max(o2);
+	Query FINAL: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) >= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: -
 
 8)	Query B/4
 	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
-	Query: -
+	Query FINAL: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) <= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
 	Descripción textual: -
 	Resultado: -
 	Anotaciones: -
