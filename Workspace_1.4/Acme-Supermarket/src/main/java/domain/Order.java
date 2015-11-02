@@ -103,8 +103,7 @@ public class Order extends DomainEntity{
 	public void setAmount(double amount){
 		this.amount = amount;
 	}
-	
-	
+
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
 	private Collection<OrderItem> orderItems;
