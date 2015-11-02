@@ -3,7 +3,7 @@ Scripts JPQL
 1)	Query C/1
 	12.7.1 The consumer/s who has/have placed more orders.
 	Query: select c from Consumer c join c.orders o group by c having count(c.orders.size) = (select max(c.orders.size) from Consumer c);
-	Descripción textual: En esta query hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Ahora realizamos un filtro en el que decimos que el count del tamaño de las orders del consumer iguale al máximo del tamaño de orders del consumer.
+	Descripción textual: En esta query hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Ahora realizamos un filtro en el que comprobamos que el número de orders del consumer que estamos analizando sea igual al número de orders del consumer que más orders ha realizado.
 	Resultado:
 	Object #0 = domain.Consumer{
 		id=13
@@ -57,7 +57,7 @@ Scripts JPQL
 3)	Query C/3
 	12.7.3 The best-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
-	Descripción textual: En esta query seleccionamos el item que no haya sido marcado como borrado y cuyo sku esté dentro del resultado de otra función. Esta otra funcion recupera el sku del OrderItem que no provenga de un order que no haya sido entregado agrupando por el sku teniendo el máximo de unidades de ese order item igual al máximo de unidades de un orderItem.
+	Descripción textual: En esta query seleccionamos el item que no haya sido marcado como borrado y cuyo sku esté dentro del resultado de otra consulta. Esta otra consulta recupera el sku del OrderItem que no provenga de un order que no haya sido entregado agrupando por el sku teniendo el máximo de unidades de ese order item igual al máximo de unidades de un orderItem.
 	Resultado:
 	Object #0 = domain.Item{
 		id=52
@@ -77,7 +77,7 @@ Scripts JPQL
 4)	Query C/4
 	12.7.4 The worst-selling item/s in the inventory.
 	Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having min(oi.units) = (select min(oi.units) from OrderItem oi));
-	Descripción textual: En esta query seleccionamos el item que no haya sido marcado como borrado y cuyo sku esté dentro del resultado de otra función. Esta otra funcion recupera el sku del OrderItem que no provenga de un order que no haya sido entregado agrupando por el sku teniendo el mínimo de unidades de ese order item igual al mínimo de unidades de un orderItem.
+	Descripción textual: En esta query seleccionamos el item que no haya sido marcado como borrado y cuyo sku esté dentro del resultado de otra consulta. Esta otra consulta recupera el sku del OrderItem que no provenga de un order que no haya sido entregado agrupando por el sku teniendo el mínimo de unidades de ese order item igual al mínimo de unidades de un orderItem.
 
 	Resultado:
 	Object #0 = domain.Item{
@@ -112,7 +112,7 @@ Scripts JPQL
 5)	Query B/1
 	17.6.1 The clerk/s who has/have served and delivered more orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) >= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-	Descripción textual: En esta query tomamos el clerk filtrando las orders que no hayan sido entregadas. Agrupamos por el clerk y filtramos si el número de orders es mayor o igual al resultado de la select que devuelve el número de orders que no tengas fecha de entrega, agrupando de nuevo por clerk.
+	Descripción textual: En esta query tomamos el clerk filtrando los orders que no hayan sido entregadas. Agrupamos por el clerk y filtramos si el número de orders es mayor o igual al resultado de la select que devuelve el número de orders que no tengan fecha de entrega, agrupando de nuevo por clerk.
 	Resultado:
 	Object #0 = domain.Clerk{
 		id=20
@@ -131,7 +131,7 @@ Scripts JPQL
 6)	Query B/2
 	17.6.2 The clerk/s who has/have served and delivered less orders.
 	Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) <= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-	Descripción textual: En esta query tomamos el clerk filtrando las orders que no hayan sido entregadas. Agrupamos por el clerk y filtramos si el número de orders es menor o igual al resultado de la select que devuelve el número de orders que no tengas fecha de entrega, agrupando de nuevo por clerk.
+	Descripción textual: En esta query tomamos el clerk filtrando los orders que no hayan sido entregadas. Agrupamos por el clerk y filtramos si el número de orders es menor o igual al resultado de la select que devuelve el número de orders que no tengan fecha de entrega, agrupando de nuevo por clerk.
 
 	Resultado:
 	Object #0 = domain.Clerk{
@@ -164,7 +164,7 @@ Scripts JPQL
 7)	Query B/3
 	17.6.3 The consumer/s who has/have cancelled more orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) >= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-	Descripción textual: En esta query tomamos el consumer filtrando las order que no tengan una fecha de cancelación. Agrupamos por el consumer y filtramos si el número de orders es mayor o igual al resultado de la select que devuelve el número de order cuya que no tengan fecha de cancelación, agrupando de nuevo por clerk.
+	Descripción textual: En esta query tomamos el consumer filtrando los orders que no tengan una fecha de cancelación. Agrupamos por el consumer y filtramos si el número de orders es mayor o igual al resultado de la select que devuelve el número de order cuya que no tengan fecha de cancelación, agrupando de nuevo por clerk.
 	Resultado:
 	Object #0 = domain.Consumer{
 		id=15
@@ -184,7 +184,7 @@ Scripts JPQL
 8)	Query B/4
 	17.6.4 Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
 	Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) <= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-	Descripción textual: En esta query tomamos el consumer filtrando las order que no tengan una fecha de cancelación. Agrupamos por el consumer y filtramos si el número de orders es menor o igual al resultado de la select que devuelve el número de order cuya que no tengan fecha de cancelación, agrupando de nuevo por clerk.
+	Descripción textual: En esta query tomamos el consumer filtrando los orders que no tengan una fecha de cancelación. Agrupamos por el consumer y filtramos si el número de orders es menor o igual al resultado de la select que devuelve el número de order cuya que no tengan fecha de cancelación, agrupando de nuevo por clerk.
 	Resultado:
 	Object #0 = domain.Consumer{
 		id=13
@@ -204,14 +204,14 @@ Scripts JPQL
 9)	Query B/5
 	17.6.5 Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
 	Query: select (count(distinct o1)*1.0)/(count(distinct o2)*1.0) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
-	Descripción textual: En esta query obtenemos el resultado de la división entre las order que se hayan cancelado este mes y las que se hayan creado en el mismo. Filtramos si el mes y año de cancelación no es igual al mes y año del momento actual. Realizamos también otro filtro en el que el mes y año de creación de un order tampoco sea el del momento actual. Realizamos una multiplicación de 1.0 para que no trunque el resultado a las unidades.
+	Descripción textual: En esta query obtenemos el resultado de la división entre los orders que se hayan cancelado este mes y los que se hayan creado/realizado en el mismo. Para comprobar que los orders hayan sido cancelados ó creados/realizados en el mes actual, comprobamos que el mes de su fecha de cancelación o creación, repectivamente, se corresponda con el mes de la fecha actual dada por el sistema y repetimos dicha comprobación con el año. Multiplicamos ambos resultados por 1.0 para que no trunque el resultado a las unidades.
 	Resultado:
 	Object #0 = java.lang.Double{0.66667} 
 
 10)	Query A/1
 	25.2.1 Display a dashboard with the following information: The item/s that has/have more comments.
 	Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
-	Descripción textual: En esta query tomamos el item que no haya sido borrado y que tenga el el tamaño del conjunto de comentarios igul al del item con mayor número de comentarios. Finalmente agrupamos los resultados por su item.
+	Descripción textual: En esta query tomamos el item que no haya sido borrado y que tenga el tamaño del conjunto de comentarios igual al del item con mayor número de comentarios. Finalmente agrupamos los resultados por su item.
 	Resultado:
 	Object #0 = domain.Item{
 		id=54
