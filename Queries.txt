@@ -1,7 +1,7 @@
 Query C/1
-Especificaci髇: The consumer/s who has/have placed more orders.
+Especificaci贸n: The consumer/s who has/have placed more orders.
 JPQL Query: select c from Consumer c join c.orders o group by c having count(c.orders.size) = (select max(c.orders.size) from Consumer c);
-Descripci髇 textual: En esta consulta hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Luego realizamos un filtro en el que comprobamos que el n鷐ero de orders del consumer que estamos analizando sea igual al n鷐ero de orders del consumer que m醩 orders ha realizado.
+Descripci贸n textual: En esta consulta hacemos un join de los consumers con sus orders y los agrupamos por los propios consumers. Luego realizamos un filtro en el que comprobamos que el n煤mero de orders del consumer que estamos analizando sea igual al n煤mero de orders del consumer que m谩s orders ha realizado.
 Resultado:
 Object #0 = domain.Consumer{
 	id=13
@@ -33,9 +33,9 @@ Object #1 = domain.Consumer{
 } 
 
 Query C/2
-Especificaci髇: The consumer/s who has/have spent more money on their orders.
+Especificaci贸n: The consumer/s who has/have spent more money on their orders.
 JPQL Query: select c from Consumer c join c.orders o where o.cancelMoment is null group by c having max(o.amount) = (select max(o.amount) from Order o);
-Descripci髇 textual: En esta consulta hacemos un join de los consumers con sus orders que no tengan fecha de cancelaci髇 y los agrupamos por los propios consumers. Luego realizamos un filtro para quedarnos con el consumer que tenga el order con la cantidad igual a la del order con mayor cantidad.
+Descripci贸n textual: En esta consulta hacemos un join de los consumers con sus orders que no tengan fecha de cancelaci贸n y los agrupamos por los propios consumers. Luego realizamos un filtro para quedarnos con el consumer que tenga el order con la cantidad igual a la del order con mayor cantidad.
 Resultado:
 Object #0 = domain.Consumer{
 	id=13
@@ -53,15 +53,15 @@ Object #0 = domain.Consumer{
 } 
 
 Query C/3
-Especificaci髇: The best-selling item/s in the inventory.
+Especificaci贸n: The best-selling item/s in the inventory.
 JPQL Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having max(oi.units) = (select max(oi.units) from OrderItem oi));
-Descripci髇 textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup醤dolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n鷐ero de unidades igual al del OrderItem con m醩 unidades.
+Descripci贸n textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup谩ndolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n煤mero de unidades igual al del OrderItem con m谩s unidades.
 Resultado:
 Object #0 = domain.Item{
 	id=52
 	version=0
 	sku="AB-H6GH"
-	name="Turr髇 de chocolate"
+	name="Turr贸n de chocolate"
 	description="se acerca la navidad, compra el mejor turron de chocolate"
 	price=1.99
 	tags=[Dulce, Turron, Chocolate]
@@ -73,9 +73,9 @@ Object #0 = domain.Item{
 }
 
 Query C/4
-Especificaci髇: The worst-selling item/s in the inventory.
+Especificaci贸n: The worst-selling item/s in the inventory.
 JPQL Query: select i from Item i where i.deleted is false and i.sku IN (select oi.sku from OrderItem oi join oi.order o where o.deliveryMoment is not null group by oi.sku having min(oi.units) = (select min(oi.units) from OrderItem oi));
-Descripci髇 textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup醤dolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n鷐ero de unidades igual al del OrderItem con menos unidades.
+Descripci贸n textual: En esta consulta discriminamos los items que hayan sido borrados y cuyo sku sea igual al resultado de una consulta secundaria. Esta consulta realiza un join entre los OrderItems y sus orders que tengas una fecha de entrega, agrup谩ndolos por el sku. Luego realizamos un filtro para quedarnos con el OrderItem que tenga su n煤mero de unidades igual al del OrderItem con menos unidades.
 
 Resultado:
 Object #0 = domain.Item{
@@ -108,9 +108,9 @@ Object #1 = domain.Item{
 } 
 
 Query B/1
-Especificaci髇: The clerk/s who has/have served and delivered more orders.
+Especificaci贸n: The clerk/s who has/have served and delivered more orders.
 JPQL Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) >= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-Descripci髇 textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar s髄o aquellos clerks cuyo n鷐ero de orders servidos, y que hayan sido entregados, sea mayor o igual al n鷐ero de orders servidos y entregados de cada clerk por separado, obteniendo el m醲imo de ellos y por lo tanto el/los clerk/s que cumplen ese m醲imo.
+Descripci贸n textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar s贸lo aquellos clerks cuyo n煤mero de orders servidos, y que hayan sido entregados, sea mayor o igual al n煤mero de orders servidos y entregados de cada clerk por separado, obteniendo el m谩ximo de ellos y por lo tanto el/los clerk/s que cumplen ese m谩ximo.
 Resultado:
 Object #0 = domain.Clerk{
 	id=20
@@ -127,9 +127,9 @@ Object #0 = domain.Clerk{
 } 
 
 Query B/2
-Especificaci髇: The clerk/s who has/have served and delivered less orders.
+Especificaci贸n: The clerk/s who has/have served and delivered less orders.
 JPQL Query: select c1 from Order o1 join o1.clerk c1 where o1.deliveryMoment is not null group by c1 having count(o1) <= all(select count(o2) from Clerk c2 join c2.orders o2 where o2.deliveryMoment is not null group by c2);
-Descripci髇 textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar s髄o aquellos clerks cuyo n鷐ero de orders servidos, y que hayan sido entregados, sea menor o igual al n鷐ero de orders servidos y entregados de cada clerk por separado, obteniendo el m韓imo de ellos y por lo tanto el/los clerk/s que cumplen ese m韓imo.
+Descripci贸n textual: En esta consulta hacemos un join entre los orders y los clerks que las administran discriminando los orders que no tengan una fecha de entrega, y agrupando por los propios clerks. Luego realizamos un filtro para tomar s贸lo aquellos clerks cuyo n煤mero de orders servidos, y que hayan sido entregados, sea menor o igual al n煤mero de orders servidos y entregados de cada clerk por separado, obteniendo el m铆nimo de ellos y por lo tanto el/los clerk/s que cumplen ese m铆nimo.
 
 Resultado:
 Object #0 = domain.Clerk{
@@ -160,9 +160,9 @@ Object #1 = domain.Clerk{
 }
 
 Query B/3
-Especificaci髇: The consumer/s who has/have cancelled more orders.
+Especificaci贸n: The consumer/s who has/have cancelled more orders.
 JPQL Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) >= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-Descripci髇 textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaci髇, y agrupando por los propios consumers. Luego realizamos un filtro para tomar s髄o aquellos consumer cuyo n鷐ero de orders canceladas sea mayor o igual al n鷐ero de orders canceladas de cada consumer por separado, obteniendo el m醲imo de ellos y por lo tanto el/los consumer/s que cumplen ese m醲imo.
+Descripci贸n textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaci贸n, y agrupando por los propios consumers. Luego realizamos un filtro para tomar s贸lo aquellos consumer cuyo n煤mero de orders canceladas sea mayor o igual al n煤mero de orders canceladas de cada consumer por separado, obteniendo el m谩ximo de ellos y por lo tanto el/los consumer/s que cumplen ese m谩ximo.
 Resultado:
 Object #0 = domain.Consumer{
 	id=15
@@ -180,9 +180,9 @@ Object #0 = domain.Consumer{
 } 
 
 Query B/4
-Especificaci髇: Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
+Especificaci贸n: Display a dashboard with the following information: The consumer/s who has/have cancelled less orders.
 JPQL Query: select c1 from Order o1 join o1.consumer c1 where o1.cancelMoment is not null group by c1 having count(o1) <= all(select count(o2) from Consumer c2 join c2.orders o2 where o2.cancelMoment is not null group by c2);
-Descripci髇 textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaci髇, y agrupando por los propios consumers. Luego realizamos un filtro para tomar s髄o aquellos consumer cuyo n鷐ero de orders canceladas sea menor o igual al n鷐ero de orders canceladas de cada consumer por separado, obteniendo el m韓imo de ellos y por lo tanto el/los consumer/s que cumplen ese m韓imo.
+Descripci贸n textual: En esta consulta hacemos un join entre los orders y los consumers que los realizan, discriminando los orders que no tengan una fecha de cancelaci贸n, y agrupando por los propios consumers. Luego realizamos un filtro para tomar s贸lo aquellos consumer cuyo n煤mero de orders canceladas sea menor o igual al n煤mero de orders canceladas de cada consumer por separado, obteniendo el m铆nimo de ellos y por lo tanto el/los consumer/s que cumplen ese m铆nimo.
 Resultado:
 Object #0 = domain.Consumer{
 	id=13
@@ -200,16 +200,16 @@ Object #0 = domain.Consumer{
 } 
 
 Query B/5
-Especificaci髇: Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
+Especificaci贸n: Display a dashboard with the following information: The ratio of orders that have been cancelled during the current month.
 JPQL Query: select (count(distinct o1)*1.0)/(count(distinct o2)*1.0) from Order o1, Order o2 where month(o1.cancelMoment) = month(CURRENT_DATE) and year(o1.cancelMoment) = year(CURRENT_DATE) and month(o2.placementMoment) = month(CURRENT_DATE) and year(o2.placementMoment) = year(CURRENT_DATE);
-Descripci髇 textual: En esta consulta obtenemos el resultado de la divisi髇 entre los orders que se hayan cancelado este mes y los que se hayan creado/realizado en el mismo. Para ello, discriminamos los las orders que no hayan sido canceladas ni creadas/realizadas en el mes y a駉. Adem醩 realizamos una multiplicaci髇 por 1.0 para evitar que se trunque el resultado en caso de que 閟te sea decimal.
+Descripci贸n textual: En esta consulta obtenemos el resultado de la divisi贸n entre los orders que se hayan cancelado este mes y los que se hayan creado/realizado en el mismo. Para ello, discriminamos los orders que no hayan sido canceladas ni creadas/realizadas en el mes y a帽o. Adem谩s realizamos una multiplicaci贸n por 1.0 para evitar que se trunque el resultado en caso de que 茅ste sea decimal.
 Resultado:
 Object #0 = java.lang.Double{0.66667} 
 
 Query A/1
-Especificaci髇: Display a dashboard with the following information: The item/s that has/have more comments.
+Especificaci贸n: Display a dashboard with the following information: The item/s that has/have more comments.
 JPQL Query: select i from Item i where i.deleted is false and i.comments.size = (select max(i.comments.size) from Item i where i.deleted is false) group by i;
-Descripci髇 textual: En esta consulta tomamos el item que no haya sido borrado y que tenga como n鷐ero de comentarios el del item con mayor n鷐ero de comentarios. Finalmente agrupamos los resultados por su item.
+Descripci贸n textual: En esta consulta tomamos el item que no haya sido borrado y que tenga como n煤mero de comentarios el del item con mayor n煤mero de comentarios. Finalmente agrupamos los resultados por su item.
 Resultado:
 Object #0 = domain.Item{
 	id=54
